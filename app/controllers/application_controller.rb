@@ -4,5 +4,15 @@ class ApplicationController < ActionController::Base
   def index
     #code
   end
-  
+
+  private
+
+  def authenticate_user
+
+  end
+
+  def logged_in?
+    !!session[:user_id]
+  end
+
 end
