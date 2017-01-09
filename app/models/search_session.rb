@@ -1,0 +1,2 @@
+class SearchSession < ApplicationRecord
+end
