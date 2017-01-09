@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# palatable
+Palatable is a platform where users can make their restaurant reviews beautiful.
+>>>>>>> aed8a01bc5b898d97c32cb12e1394ca3335bc606
