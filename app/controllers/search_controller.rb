@@ -5,7 +5,9 @@ class SearchController < ApplicationController
   # iteration 2: display the link to a "dummy show page" that populates the restaurant name and address with the restaurant search result, and then make sure that saves to the database when a person submits a review
 
   def create
-    #code
+    query_url = "https://api.foursquare.com/v2/venues/search?v=20161016&query=#{params[:search]}&intent=checkin&client_id=#{ENV['foursquare_client_id']}&client_secret=#{ENV['foursquare_client_secret']}&near=#{params[:zipcode]}&limit=10"
+    resp = JSON.parse(RestClient.get(query_url))
+    venues = resp["response"]["venues"]
   end
 
   def destroy

@@ -1,1 +1,12 @@
-Hello world!
+<h1>Palatable</h1>
+
+<%= form_tag '/search', method: :post do %>
+  <%= text_field_tag(
+      :search,
+      nil,
+      placeholder: "Search"
+  ) %>
+  <%= text_field_tag :zipcode, nil, placeholder: "Zip code" %>
+  <%= submit_tag "Search" %>
+
+<% end %>

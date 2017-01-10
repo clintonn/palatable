@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   resources :reviews, except: [:index]
   resources :upvotes, only: [:create, :destroy]
   resources :restaurants, only: [:show, :create]
-  resources :search, only: [:create, :destroy]
 
   root to: 'application#index'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
+  post '/search' => 'search#create'
 
 end
