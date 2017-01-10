@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   def new
     if logged_in?
-      binding.pry
       redirect_to root_path
     else
       @user = User.new
