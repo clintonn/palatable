@@ -14,10 +14,10 @@ restaurants_list = [
 ]
 
 reviews_list = [
-  ["one review", 10, 10, 10, "526d9114498ec8efda93fcce", 1],
-  ["caffe romeo review", 10, 10, 10, "4bf58dd8d48988d1e0931735", 1],
-  ["romeo's ristorante review", 10, 8, 8, "4f442c0b19836ed00192aed8", 2],
-  ["Romeo Brothers Meats and Foods review content", 5, 3, 1, "526d9114498ec8efda93fcce", 2]
+  ["one review", 10, 10, 10, 1, 1],
+  ["caffe romeo review", 10, 10, 10, 1, 1],
+  ["romeo's ristorante review", 10, 8, 8, 2, 2],
+  ["Romeo Brothers Meats and Foods review content", 5, 3, 1, 2, 2]
 ]
 
 users_list = [
