@@ -56,3 +56,6 @@ aed8a01bc5b898d97c32cb12e1394ca3335bc606
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml
