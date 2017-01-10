@@ -1,0 +1,7 @@
+<h1><%= @restaurant.name %></h1>
+<p><% @reformatted_address.each do |address_line| %>
+  <%= address_line %><br>
+  <% end %>
+</p>
+
+<%= link_to 'Create a new review for this restaurant', new_review_path %>

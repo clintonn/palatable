@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
   post '/search' => 'search#create'
+  post '/new_restaurant' => 'restaurants#dummy_create'
 
 end

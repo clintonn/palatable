@@ -1,0 +1,6 @@
+<% @venues.each do |venue| %>
+<h4><%= link_to venue["name"], new_restaurant_path(address: venue["location"]["formattedAddress"], name: venue["name"]), foursquare_id: venue["id"], method: :post %></h4>
+<p><% venue["location"]["formattedAddress"].each do |address_line| %>
+<%= address_line %><br />
+<% end %></p>
+<% end %>
