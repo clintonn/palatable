@@ -59,13 +59,13 @@ class ReviewsController < ApplicationController
     find_review
     @restaurant = @review.restaurant
     @review.destroy
-    redirect_to @restaurant
+    redirect_to root_path
   end
 
   private
 
     def review_params
-        params.require(:review).permit(:content, :food_rating, :environment_rating, :service_rating, :user_id, :restaurant_id)
+        params.require(:review).permit(:title, :content, :food_rating, :environment_rating, :service_rating, :user_id, :restaurant_id)
     end
 
     def find_review

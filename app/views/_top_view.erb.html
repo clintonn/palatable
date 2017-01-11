@@ -1,0 +1,29 @@
+<style>
+  .header {
+    background-image: url("<%= @restaurant.photo %>");
+  }
+</style>
+
+<div class="header">
+  <h1><%= @restaurant.name %></h1>
+</div>
+
+<div class="socials">
+  <% socials = {phone: @restaurant.phone, facebook: @restaurant.facebook, twitter: @restaurant.twitter, globe: @restaurant.url}.compact %>
+  <% socials.each do |k, v| %>
+  <a href="
+    <% case k %>
+    <% when :phone %>
+    <%= "tel:#{v.tr('^0-9','')}" %>
+    <% when :facebook %>
+    <%= "https://facebook.com/#{v}" %>
+    <% when :twitter %>
+    <%= "https://twitter.com/#{v}" %>
+    <% when :globe %>
+    <%= v %>
+    <% end %>
+  ">
+    <i class="fa fa-<%= k.to_s %>"></i>
+  </a>
+  <% end %>
+</div>

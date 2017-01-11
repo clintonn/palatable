@@ -1,6 +1,8 @@
 
     Restaurant: <%= @review.restaurant.name %>
   <br>
+    Title: <%= @review.title %>
+  <br>
     Review by: <%= @review.user.name %>
   <br>
     Content: <%= @review.content %>
@@ -14,5 +16,8 @@
 <% if @owned %>
     <%= form_tag edit_review_path, method: 'get' do %>
       <%= submit_tag "Edit this Review" %>
+    <% end %>
+    <%= form_tag review_path, method: 'delete' do %>
+      <%= submit_tag "Delete this Review" %>
     <% end %>
 <% end %>
