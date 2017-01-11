@@ -1,0 +1,54 @@
+<style>
+  .header {
+    background-image: url("<%= @restaurant.photo %>");
+  }
+</style>
+
+
+<div class="header">
+  <h1><%= @restaurant.name %></h1>
+</div>
+
+<div class="socials">
+  <% socials = {phone: @restaurant.phone, facebook: @restaurant.facebook, twitter: @restaurant.twitter, globe: @restaurant.url}.compact %>
+  <% socials.each do |k, v| %>
+  <a href="
+    <% case k %>
+    <% when :phone %>
+    <%= "tel:#{v}" %>
+    <% when :facebook %>
+    <%= "https://facebook.com/#{v}" %>
+    <% when :twitter %>
+    <%= "https://twitter.com/#{v}" %>
+    <% when :globe %>
+    <%= v %>
+    <% end %>
+  ">
+    <i class="fa fa-<%= k.to_s %>"></i>
+  </a>
+  <% end %>
+</div>
+<%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
+
+<h4>Reviews list</h4>
+<ol>
+<% @restaurant.reviews.each do |review| %>
+<li>
+<strong><%= review.user.name %> said:</strong> <%= review.content %>
+</li>
+
+<% end %>
+</ol>
+
+<!-- t.string   "name"
+t.string   "address"
+t.datetime "created_at",    null: false
+t.datetime "updated_at",    null: false
+t.string   "foursquare_id"
+t.string   "url"
+t.string   "phone"
+t.string   "twitter"
+t.string   "facebook"
+t.string   "menu"
+t.string   "photo"
+t.integer  "price_tier" -->
