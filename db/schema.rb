@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20170111194854) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "foursquare_id"
+    t.string   "url"
+    t.string   "phone"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "menu"
+    t.string   "photo"
+    t.integer  "price_tier"
   end
 
   create_table "reviews", force: :cascade do |t|

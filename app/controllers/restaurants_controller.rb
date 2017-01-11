@@ -8,7 +8,9 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @restaurant.populate_show
   end
+
 
   private
 
