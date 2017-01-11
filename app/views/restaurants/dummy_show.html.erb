@@ -1,7 +1,8 @@
-<h1><%= @restaurant.name %></h1>
-<p><% @reformatted_address.each do |address_line| %>
+
+<h1><%= session[:dummy_restaurant].name %></h1>
+<p><% session[:reformatted_address].each do |address_line| %>
   <%= address_line %><br>
   <% end %>
 </p>
-
-<%= link_to 'Create a new review for this restaurant', new_review_path %>
+​
+<%= link_to 'Create a new review for this restaurant', dummy_review_path %>

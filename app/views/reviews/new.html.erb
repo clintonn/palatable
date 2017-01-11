@@ -14,6 +14,6 @@
   <br>
     <%= f.hidden_field :user_id, value: @user.id%>
     <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
-
+    <%= f.hidden_field :foursquare_id, value: @restaurant.foursquare_id %>
     <%= f.submit %><br>
 <% end %>

@@ -1,7 +1,17 @@
 class ReviewsController < ApplicationController
 
   def new
-    if find_user && find_restaurant
+    if find_user && (find_restaurant || session[:dummy_restaurant])
+      @review = Review.new
+      render :new
+    else
+      redirect_to root_path
+    end
+  end
+
+  def dummy_new
+    if find_user
+      @restaurant = Restaurant.new
       @review = Review.new
       render :new
     else
@@ -10,8 +20,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @restaurant = Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
+    # session[:dummy_restaurant] = @restaurant
     @review = Review.new(review_params)
+    @restaurant.save
+    @review.restaurant_id ||= @restaurant.id
     if @review.save
+      binding.pry
       redirect_to review_path(@review)
     else
       redirect_to new_review_path
