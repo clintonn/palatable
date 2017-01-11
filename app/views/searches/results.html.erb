@@ -2,7 +2,8 @@
 <% @restaurants.each do |restaurant| %>
   <% if restaurant.is_a?(Restaurant) %>
     <h4><%= link_to restaurant.name, restaurant %></h4>
-    <p>
+    <p> <!-- make a method average for the Restaurant model and call that method
+      on our restaurant object -->
       <% restaurant.address.split("~").each do |address_line| %>
       <%= address_line %><br />
       <% end %>
