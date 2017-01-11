@@ -34,10 +34,6 @@ class SearchesController < ApplicationController
     # edit: nvm lol
   end
 
-  def destroy
-    #code
-  end
-
   private
 
   def search_params

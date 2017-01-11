@@ -3,16 +3,21 @@
 }
 
 #search_field {
-  @include span-columns(2);
-  @include shift(4);
+  @include span-columns(3);
+  @include shift(3);
 }
 
 #location_field {
-  @include span-columns(1);
+  @include span-columns(2);
 }
 
 #results_container {
   @include outer-container;
+}
+
+#results_inner_container {
+  @include span-columns(9);
+  @include shift(3)
 }
 
 .result_card {
