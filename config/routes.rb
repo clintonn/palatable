@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   post '/search' => 'search#create'
   post '/new_restaurant' => 'restaurants#dummy_create'
 
+  get '/search/:query' => 'search#show'
+
 end
