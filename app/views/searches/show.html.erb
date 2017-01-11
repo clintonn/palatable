@@ -1,7 +1,7 @@
 <div id="search_form">
   <%= form_for Search.new do |f| %>
-    <%= f.text_field :search, id: 'search_field', placeholder: "Search" %>
-    <%= f.text_field :location, id: 'location_field', placeholder: "Zip or Address"%>
+    <%= f.text_field :search, id: 'search_field', value: @search.search %>
+    <%= f.text_field :location, id: 'location_field', value: @search.location %>
     <%= f.submit 'Search Again' %>
   <% end %>
 </div>
