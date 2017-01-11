@@ -1,0 +1,23 @@
+<h1>Edit Review</h1>
+<%= form_for @review do |f| %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  <br>
+    <%= f.label :food_rating %>
+    <%= f.select :food_rating, options_for_select( (1..5).to_a, 5)%>
+  <br>
+  <%= f.label :environment_rating %>
+  <%= f.select :environment_rating, options_for_select( (1..5).to_a, 5)%>
+  <br>
+    <%= f.label :service_rating %>
+    <%= f.select :service_rating, options_for_select( (1..5).to_a, 4)%>
+  <br>
+    <%= f.hidden_field :user_id, value: @review.user.id%>
+    <%= f.hidden_field :restaurant_id, value: @review.restaurant.id %>
+
+    <%= f.submit %><br>
+<% end %>
+
+<%= form_tag review_path, method: "delete" do %>
+  <%= submit_tag "Delete this Review" %>
+<% end %>

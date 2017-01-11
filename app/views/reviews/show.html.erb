@@ -1,0 +1,18 @@
+
+    Restaurant: <%= @review.restaurant.name %>
+  <br>
+    Review by: <%= @review.user.name %>
+  <br>
+    Content: <%= @review.content %>
+  <br>
+    Food Rating: <%= @review.food_rating %>
+  <br>
+  Environment Rating: <%= @review.environment_rating %>
+  <br>
+    Service Rating: <%= @review.service_rating %>
+
+<% if @owned %>
+    <%= form_tag edit_review_path, method: 'get' do %>
+      <%= submit_tag "Edit this Review" %>
+    <% end %>
+<% end %>

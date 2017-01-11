@@ -1,0 +1,12 @@
+<% @restaurants.each do |restaurant| %>
+
+  <% if restaurant.is_a?(Restaurant) %>
+    <h4><%= link_to restaurant.name, restaurant %></h4>
+    <p><%= restaurant = restaurant.address.split("~") %></p>
+  <% else %>
+    <%= link_to restaurant["name"], new_restaurant_path(address: restaurant["location"]["formattedAddress"], name: restaurant["name"], foursquare_id: restaurant["id"]), method: :post %>
+    <% restaurant["location"]["formattedAddress"].each do |address_line| %>
+    <%= address_line %><br />
+    <% end %>
+  <% end %>
+<% end %>

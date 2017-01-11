@@ -19,7 +19,7 @@
         <% end %>
       </p>
     <% else %>
-      <h4><%= link_to restaurant["name"], new_restaurant_path(address: restaurant["location"]["formattedAddress"], name: restaurant["name"]), foursquare_id: restaurant["id"]), method: :post %></h4>
+      <h4><%= link_to restaurant["name"], new_restaurant_path(address: restaurant["location"]["formattedAddress"], name: restaurant["name"], foursquare_id: restaurant["id"]), method: 'post' %></h4>
       <p>
         <% restaurant["location"]["formattedAddress"].each do |address_line| %>
         <%= address_line %><br />
