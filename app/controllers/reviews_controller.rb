@@ -22,8 +22,7 @@ class ReviewsController < ApplicationController
   def create
     @restaurant = Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
     @review = Review.new(review_params)
-    @review.avg_rating = ((@review.food_rating + @review.environment_rating + @review.service_rating) / 3.to_f).round(2)
-    @review.save
+    @review.calculate_review_avg
     @restaurant.save
     @review.restaurant_id ||= @restaurant.id
     if @review.save
@@ -52,8 +51,7 @@ class ReviewsController < ApplicationController
   def update
     find_review
     @review.update(review_params)
-    @review.avg_rating = ((@review.food_rating + @review.environment_rating + @review.service_rating) / 3.to_f).round(2)
-    @review.save
+    @review.calculate_review_avg
     redirect_to review_path(@review)
   end
 
