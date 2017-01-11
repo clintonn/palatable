@@ -59,7 +59,7 @@ class ReviewsController < ApplicationController
     find_review
     @restaurant = @review.restaurant
     @review.destroy
-    redirect_to @restaurant
+    redirect_to root_path
   end
 
   private

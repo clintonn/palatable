@@ -1,0 +1,32 @@
+.header {
+  background-size: 100%;
+  font-size: 2em;
+  color: white;
+  text-align: center;
+  font-family: $serif-type;
+  height: 40vh;
+
+  background-size: 100%;
+  font-size: 2em;
+  color: white;
+  text-align: center;
+  font-family: "RomanaBT-Bold", "Georgia", serif;
+  position: relative;
+  top: 0;
+  left: 0;
+  float: left;
+  margin: -.25em 0 1em -.25em;
+  width: 100vw;
+
+}
+
+.header h1 {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+}
+
+i a {
+  color: black;
+}
