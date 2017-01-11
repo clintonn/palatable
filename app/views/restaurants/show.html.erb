@@ -4,7 +4,6 @@
   }
 </style>
 
-
 <div class="header">
   <h1><%= @restaurant.name %></h1>
 </div>
@@ -15,7 +14,7 @@
   <a href="
     <% case k %>
     <% when :phone %>
-    <%= "tel:#{v}" %>
+    <%= "tel:#{v.tr('^0-9','')}" %>
     <% when :facebook %>
     <%= "https://facebook.com/#{v}" %>
     <% when :twitter %>
