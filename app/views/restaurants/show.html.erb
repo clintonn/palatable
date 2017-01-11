@@ -23,13 +23,13 @@
     <%= v %>
     <% end %>
   ">
-    <i class="fa fa-<%= k.to_s %>"></i>
+    <i class="fa fa-<%= k.to_s %> fa-lg"></i>
   </a>
   <% end %>
 </div>
 <%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
 
-<h4>Reviews list</h4>
+<h4 id="review_list_header">Reviews list</h4>
 <ol>
 <% @restaurant.reviews.each do |review| %>
 <li>

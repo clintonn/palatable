@@ -17,7 +17,6 @@
   float: left;
   margin: -.25em 0 1em -.25em;
   width: 100vw;
-  
 }
 
 .header h1 {
@@ -26,7 +25,21 @@
   transform: translateY(-50%);
   margin: 0;
 }
+a {
+  text-decoration: none;
+}
 
-i a {
+// #review_list_header {
+//   font-family: $monospace-type;
+//   text-transform: uppercase;
+// }
+
+div.socials {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+a i {
   color: black;
+  padding: 0 1em;
 }
