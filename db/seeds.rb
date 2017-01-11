@@ -25,6 +25,14 @@ users_list = [
   ["Jane Doe", "69420", "jane.doe@gmail.com"]
 ]
 
+searches_list = [
+  ["slgkjdflkgjdflgkdj", "Speedy Romano", "10038"]
+  # ["", "", ""],
+  # [],
+  # [],
+
+]
+
 restaurants_list.each do |name, address, foursquare_id|
   Restaurant.create(name: name, address: address, foursquare_id: foursquare_id)
 end
@@ -35,4 +43,8 @@ end
 
 users_list.each do |name, password, email|
   User.create(name: name, password: password, email: email)
+end
+
+searches_list.each do |query, search, location|
+  Search.create(query: query, search: search, location: location)
 end
