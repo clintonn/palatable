@@ -4,13 +4,13 @@
     <%= f.text_area :content %>
   <br>
     <%= f.label :food_rating %>
-    <%= f.select :food_rating, options_for_select( (1..5).to_a, 5)%>
+    <%= f.select :food_rating, options_for_select( (1..5).to_a, @review.food_rating)%>
   <br>
   <%= f.label :environment_rating %>
-  <%= f.select :environment_rating, options_for_select( (1..5).to_a, 5)%>
+  <%= f.select :environment_rating, options_for_select( (1..5).to_a, @review.environment_rating)%>
   <br>
     <%= f.label :service_rating %>
-    <%= f.select :service_rating, options_for_select( (1..5).to_a, 4)%>
+    <%= f.select :service_rating, options_for_select( (1..5).to_a, @review.service_rating)%>
   <br>
     <%= f.hidden_field :user_id, value: @review.user.id%>
     <%= f.hidden_field :restaurant_id, value: @review.restaurant.id %>

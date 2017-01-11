@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
 
   def new
-    #code
+    @user = User.new
   end
 
   def create
     @user = User.new(user_params)
     # additional logic here for validations
     @user.save
+    session[:user_id] = @user.id
     redirect_to @user
   end
 
