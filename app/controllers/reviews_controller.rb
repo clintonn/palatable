@@ -1,9 +1,12 @@
 class ReviewsController < ApplicationController
 
   def new
-    find_user
-    find_restaurant
-    @review = Review.new
+    if find_user && find_restaurant
+      @review = Review.new
+      render :new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -17,10 +20,18 @@ class ReviewsController < ApplicationController
 
   def show
     find_review
+    find_user
+    @owned = @user.owns_review?(@review)
   end
 
   def edit
      find_review
+     find_user
+     if @user.owns_review?(@review)
+       render :edit
+     else
+      redirect_to user_path(@user) #flash notice if user doesnt own review
+    end
   end
 
   def update
@@ -31,8 +42,9 @@ class ReviewsController < ApplicationController
 
   def destroy
     find_review
+    @restaurant = @review.restaurant
     @review.destroy
-    redirect_to new_review_path
+    redirect_to @restaurant
   end
 
   private
