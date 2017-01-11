@@ -9,11 +9,10 @@ class Restaurant < ApplicationRecord
     self.phone = response["contact"]["formattedPhone"]
     self.twitter = response["contact"]["twitter"]
     self.facebook = response["contact"]["facebook"]
-    self.menu = response["menu"]["url"]
+    self.menu = response["menu"]["url"] if response ["menu"]
     photo1 = response["photos"]["groups"].first["items"].first
     self.photo ="#{photo1["prefix"]}#{photo1["width"]}x#{photo1["height"]}#{photo1["suffix"]}"
     self.price_tier = response["price"]["tier"]
-    self.save
   end
 
   def api_call

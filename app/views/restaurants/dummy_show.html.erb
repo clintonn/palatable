@@ -1,7 +1,33 @@
-<h1><%= session[:dummy_restaurant].name %></h1>
-<p><% session[:reformatted_address].each do |address_line| %>
-  <%= address_line %><br>
+<style>
+  .header {
+    background-image: url("<%= session[:dummy_restaurant].photo %>");
+  }
+</style>
+
+<div class="header">
+  <h1><%= session[:dummy_restaurant].name %></h1>
+</div>
+
+<div class="socials">
+  <% socials = {phone: session[:dummy_restaurant].phone, facebook: session[:dummy_restaurant].facebook, twitter: session[:dummy_restaurant].twitter, globe: session[:dummy_restaurant].url}.compact %>
+  <% socials.each do |k, v| %>
+  <a href="
+    <% case k %>
+    <% when :phone %>
+    <%= "tel:#{v.tr('^0-9','')}" %>
+    <% when :facebook %>
+    <%= "https://facebook.com/#{v}" %>
+    <% when :twitter %>
+    <%= "https://twitter.com/#{v}" %>
+    <% when :globe %>
+    <%= v %>
+    <% end %>
+  ">
+    <i class="fa fa-<%= k.to_s %> fa-lg"></i>
+  </a>
   <% end %>
-</p>
-​
+</div>
+
+<h4 id="review_list_header">Reviews list</h4>
+<p>None here yet — be the first!</p>
 <%= link_to 'Create a new review for this restaurant', dummy_review_path %>
