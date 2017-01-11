@@ -1,0 +1,18 @@
+<%= form_for @review do |f| %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  <br>
+    <%= f.label :food_rating %>
+    <%= f.select :food_rating, options_for_select( (1..10).to_a, 10)%>
+  <br>
+  <%= f.label :environment_rating %>
+  <%= f.select :environment_rating, options_for_select( (1..10).to_a, 10)%>
+  <br>
+    <%= f.label :service_rating %>
+    <%= f.select :service_rating, options_for_select( (1..10).to_a, 10)%>
+  <br>
+    <%= f.hidden_field :user_id, value: @user.id%>
+    <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+
+    <%= f.submit %><br>
+<% end %>
