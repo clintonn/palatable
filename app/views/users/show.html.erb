@@ -1,6 +1,7 @@
 <h1> Welcome <%= @user.name %>! </h1>
 
 <p>
+  <%= console %>
   <% @user.reviews.each do |review| %>
   <h3><%= review.restaurant_name %> <br></h3>
   <%= review.food_rating %><br>
