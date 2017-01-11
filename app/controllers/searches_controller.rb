@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find_by(query: params[:query])
-    query_url = "https://api.foursquare.com/v2/venues/search?v=20161016&query=#{@search.search}&intent=checkin&client_id=#{ENV['foursquare_client_id']}&client_secret=#{ENV['foursquare_client_secret']}&near=#{@search.location}&limit=10&categoryId=4d4b7105d754a06374d81259"
+    query_url = "https://api.foursquare.com/v2/venues/search?v=20161016&query=#{@search.search}&intent=checkin&client_id=#{ENV['foursquare_client_id']}&client_secret=#{ENV['foursquare_client_secret']}&near=#{@search.location}&limit=12&categoryId=4d4b7105d754a06374d81259"
     resp = JSON.parse(RestClient.get(query_url))
     @restaurants = resp["response"]["venues"]
 

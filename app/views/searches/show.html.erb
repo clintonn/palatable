@@ -1,24 +1,30 @@
-<%= form_for @search do |f| %>
-  <%= f.text_field :search %>
-  <%= f.text_field :location %>
-  <%= f.submit 'Search Again' %>
-<% end %>
-
-<h1>Did you mean...</h1>
-<% @restaurants.each do |restaurant| %>
-  <% if restaurant.is_a?(Restaurant) %>
-    <h4><%= link_to restaurant.name, restaurant %></h4>
-    <p>
-      <% restaurant.address.split("~").each do |address_line| %>
-      <%= address_line %><br />
-      <% end %>
-    </p>
-  <% else %>
-    <%= link_to restaurant["name"], new_restaurant_path(address: restaurant["location"]["formattedAddress"], name: restaurant["name"]), foursquare_id: restaurant["id"], method: :post %>
-    <p>
-      <% restaurant["location"]["formattedAddress"].each do |address_line| %>
-      <%= address_line %><br />
-      <% end %>
-    </p>
+<div id="search_form">
+  <%= form_for @search do |f| %>
+    <%= f.text_field :search, id: 'search_field' %>
+    <%= f.text_field :location, id: 'location_field'%>
+    <%= f.submit 'Search Again' %>
   <% end %>
-<% end %>
+</div>
+
+<div id="results_container">
+<h1 id="did_you_mean">Did you mean...</h1>
+  <% @restaurants.each do |restaurant| %>
+    <div class="result_card">
+      <% if restaurant.is_a?(Restaurant) %>
+      <h4><%= link_to restaurant.name, restaurant %></h4>
+      <p>
+        <% restaurant.address.split("~").each do |address_line| %>
+        <%= address_line %><br />
+        <% end %>
+      </p>
+    <% else %>
+      <h4><%= link_to restaurant["name"], new_restaurant_path(address: restaurant["location"]["formattedAddress"], name: restaurant["name"]), foursquare_id: restaurant["id"], method: :post %></h4>
+      <p>
+        <% restaurant["location"]["formattedAddress"].each do |address_line| %>
+        <%= address_line %><br />
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+#search_form {
+  @include outer-container;
+}
+
+#search_field {
+  @include span-columns(2);
+  @include shift(4);
+}
+
+#location_field {
+  @include span-columns(1);
+}
+
+#results_container {
+  @include outer-container;
+}
+
+.result_card {
+  @include span-columns(3);
+  @include omega(3n);
+}
+
+#did_you_mean {
+  @include fill-parent();
+  text-align: center;
+}
