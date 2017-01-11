@@ -8,7 +8,11 @@ class SearchesController < ApplicationController
   end
 
   def update
-    binding.pry
+    @search = Search.find(params[:id])
+    @search.update(search_params)
+    @search.set_query_url
+    @search.save
+    redirect_to search_result_path(@search.query)
   end
 
   def show
@@ -27,6 +31,7 @@ class SearchesController < ApplicationController
     end
     # render :results
     # New implementation below: Add search instance instead, redirect to show page for url query handling
+    # edit: nvm lol
   end
 
   def destroy
