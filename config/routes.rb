@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get '/restaurants/:restaurant_id/reviews/new' => 'reviews#new', as: 'new_review'
   post '/restaurants/:restaurant_id/reviews' => 'reviews#create', as: 'post_review'
 
+  # analytics page
+  get '/analytics' => 'application#analytics', as: 'analytics'
 end

@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
     @search = Search.new
   end
 
+  def analytics
+  end
+
   private
 
   def authenticate_user
