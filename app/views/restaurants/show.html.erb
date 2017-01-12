@@ -30,11 +30,26 @@
 <%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
 
 <h4 id="review_list_header">Reviews list</h4>
-<ol>
 <% @restaurant.reviews.each do |review| %>
-<li>
-<strong><%= review.user.name %> said:</strong> <%= review.content %>
-</li>
-
+<div class="review">
+  <div class="user-info">
+    <%= link_to review.user.name, review.user %>
+  </div>
+  <section class="review-content">
+      <section class="ratings">
+        <p class="food-rating">
+          <%= review.food_rating %> — FOOD
+        </p>
+        <p class="service-rating">
+          <%= review.service_rating %> — SERVICE
+        </p>
+        <p class="environment-rating">
+          <%= review.environment_rating %> — ENVIRONMENT
+        </p>
+      </section>
+      <section class="review-text">
+        <%= review.content %>
+    </section>
+    </section>
+  </div>
 <% end %>
-</ol>

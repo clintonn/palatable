@@ -1,11 +1,3 @@
-@import "bourbon";
-@import "neat";
-@import "typography";
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
-@import "results";
-@import "restaurants";
-
-
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -20,3 +12,10 @@
  *
  *= require_self
  */
+
+ @import "bourbon";
+ @import "neat";
+ @import "typography";
+ @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+ @import "results";
+ @import "restaurants";
