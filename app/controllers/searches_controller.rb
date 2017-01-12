@@ -31,9 +31,6 @@ class SearchesController < ApplicationController
         restaurant = restaurant
       end
     end
-    # render :results
-    # New implementation below: Add search instance instead, redirect to show page for url query handling
-    # edit: nvm lol
   end
 
   private
