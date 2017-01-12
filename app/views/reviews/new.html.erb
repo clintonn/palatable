@@ -7,13 +7,13 @@
     <%= f.text_area :content, required: true %>
   <br>
     <%= f.label :food_rating %>
-    <%= f.select :food_rating, options_for_select( (1..5).to_a, ""), required: true, include_blank: true%>
+    <%= f.select :food_rating, options_for_select( (1..5).to_a, ""), {include_blank: true}, {required: true}%>
   <br>
   <%= f.label :environment_rating %>
-  <%= f.select :environment_rating, options_for_select( (1..5).to_a, ""), required: true, include_blank: true %>
+  <%= f.select :environment_rating, options_for_select( (1..5).to_a, ""), {include_blank: true}, {required: true} %>
   <br>
     <%= f.label :service_rating %>
-    <%= f.select :service_rating, options_for_select( (1..5).to_a, ""), required: true, include_blank: true%>
+    <%= f.select :service_rating, options_for_select( (1..5).to_a, ""), {include_blank: true}, {required: true}%>
   <br>
     <%= f.hidden_field :user_id, value: @user.id%>
     <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
