@@ -4,7 +4,6 @@ class ReviewsController < ApplicationController
     if !find_user
       redirect_to root_path
     elsif !find_restaurant
-      session[:dummy_restaurant]
       @review = Review.new
       render :new
     elsif !@user.owns_restaurant_review(@restaurant).empty?
@@ -38,6 +37,7 @@ class ReviewsController < ApplicationController
     @restaurant.save
     @review.restaurant_id ||= @restaurant.id
     if @review.save
+      session[:dummy_restaurant] = nil
       redirect_to review_path(@review)
     else
       redirect_to new_review_path
