@@ -32,9 +32,16 @@
 <h4 id="review_list_header">Reviews list</h4>
 <ol>
 <% @restaurant.reviews.each do |review| %>
-<li>
-<strong><%= review.user.name %> said:</strong> <%= review.content %>
-</li>
-
+  <li>
+  <strong>
+    <%= review.user.name %> said:
+  </strong>
+  <%= review.content %>
+    <% if @user.id == review.user.id %>
+      <%= form_tag edit_review_path, method: 'get' do %>
+        <%= submit_tag "Edit this Review" %>
+      <% end %>
+    <% end %>
+  </li>
 <% end %>
 </ol>

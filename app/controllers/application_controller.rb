@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
     !!session[:user_id]
   end
 
+  private
+
+    def find_user
+      @user = User.find(session[:user_id]) if session[:user_id]
+    end
+
+
 end

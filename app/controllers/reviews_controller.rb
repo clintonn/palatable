@@ -74,9 +74,6 @@ class ReviewsController < ApplicationController
 
     # find_user
     # place in application controller? or private method in reviews
-    def find_user
-      @user = User.find(session[:user_id]) if session[:user_id]
-    end
 
     def find_restaurant
       @restaurant = Restaurant.find(params[:restaurant_id])

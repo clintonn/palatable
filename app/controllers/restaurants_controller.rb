@@ -8,6 +8,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    find_user
     @restaurant = Restaurant.find(params[:id])
     @restaurant.populate_show
     @restaurant.save
