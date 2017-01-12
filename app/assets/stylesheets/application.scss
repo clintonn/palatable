@@ -19,3 +19,43 @@
  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
  @import "results";
  @import "restaurants";
+
+#nav {
+  margin: 3vw;
+}
+
+#top-logo {
+  display: inline-block;
+}
+
+#top-logo a {
+  font-family: 'RomanaBT-Bold';
+  font-size: 2em;
+  color: #000;
+  display: inline-block;
+}
+
+.session_controls {
+  margin: 0.1vw 2vw;
+  float: right;
+}
+
+.session_controls input {
+  -webkit-border-radius: 26;
+  -moz-border-radius: 26;
+  border-radius: 5px;
+  color: #000000;
+  background: #fff;
+  font-size: .6em;
+  padding: 10px 20px 10px 20px;
+  border: solid #ccc 1px;
+  text-decoration: none;
+  font-family: $monospace-type;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+}
+
+.session_controls input:hover {
+  text-decoration: none;
+}
