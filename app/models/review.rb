@@ -14,4 +14,8 @@ class Review < ApplicationRecord
     save
   end
 
+  def ratings_hash
+    {"Food" => food_rating, "Environment" => environment_rating, "Service" => service_rating}
+  end
+
 end
