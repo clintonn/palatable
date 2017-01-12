@@ -4,9 +4,14 @@
   }
 </style>
 
+
 <div class="header">
   <h1><%= @restaurant.name %></h1>
 </div>
+
+<h3>
+<%= link_to "Search Again", root_path%>
+</h3>
 
 <div class="socials">
   <% socials = {phone: @restaurant.phone, facebook: @restaurant.facebook, twitter: @restaurant.twitter, globe: @restaurant.url}.compact %>

@@ -1,4 +1,9 @@
-<h1>Edit Review</h1>
+<h3>
+Hi <%= link_to @review.user.name, user_path(@review.user)%>!
+</h3>
+
+<h1>Edit Your Review for:</h1>
+<h2>for <%= link_to @review.restaurant.name, restaurant_path(@review.restaurant)%></h2>
 <%= form_for @review do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>

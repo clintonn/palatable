@@ -62,9 +62,10 @@ class ReviewsController < ApplicationController
 
   def destroy
     find_review
+    find_user
     @restaurant = @review.restaurant
     @review.destroy
-    redirect_to root_path
+    redirect_to user_path (@user)
   end
 
   private

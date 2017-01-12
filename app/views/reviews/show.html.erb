@@ -1,12 +1,24 @@
+<h3>
+  <%= link_to "Search Again", root_path%>
+</h3>
 
-    Restaurant: <%= @review.restaurant.name %>
+    <h1>
+          Restaurant: <%= link_to @review.restaurant.name, restaurant_path(@review.restaurant)%>
+    </h1>
   <br>
-    Title: <%= @review.title %>
+    <h2>
+      Title: <%= @review.title %>
+    </h2>
   <br>
-    Review by: <%= @review.user.name %>
+    <h3>
+    Review by: <%= link_to @review.user.name, user_path(@review.user)%>
+    </h3>
   <br>
+    <h4>
     Content: <%= @review.content %>
+    </h4>
   <br>
+
     Food Rating: <%= @review.food_rating %>
   <br>
   Environment Rating: <%= @review.environment_rating %>

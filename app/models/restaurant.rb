@@ -20,4 +20,8 @@ class Restaurant < ApplicationRecord
     JSON.parse(RestClient.get(query_url))["response"]["venue"]
   end
 
+  def spaced_address
+    address.split('~').join(' ')
+  end
+
 end

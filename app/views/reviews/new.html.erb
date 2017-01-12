@@ -1,4 +1,18 @@
-<h1>New Review</h1>
+<h3>
+  <%= link_to "Search Again", root_path%>
+</h3>
+
+<h3>
+  Hi <%= link_to @user.name, user_path(@user)%>!
+</h3>
+
+<h1>Write a New Review</h1>
+<h2>
+      for: <%= link_to @restaurant.name, restaurant_path(@restaurant)%>
+</h2>
+<h4>
+      at: <%= @restaurant.spaced_address %>
+</h4>
 <%= form_for @review do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
