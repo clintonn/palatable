@@ -36,6 +36,11 @@ class Restaurant < ApplicationRecord
       self.photo = "/default_header.jpg"
     end
   end
+
+  def first_x_reviews(x)
+    Review.where(restaurant_id: self.id).limit(x)
+  end
+
 # testing purposes
   def spaced_address
     address.split('~').join(' ')

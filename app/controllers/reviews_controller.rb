@@ -74,7 +74,6 @@ class ReviewsController < ApplicationController
     @review.destroy
     redirect_to user_path (@user)
   end
-
   private
 
     def review_params
