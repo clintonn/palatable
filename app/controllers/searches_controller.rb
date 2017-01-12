@@ -24,6 +24,8 @@ class SearchesController < ApplicationController
     @restaurants.map! do |restaurant|
       query = Restaurant.find_by(foursquare_id: restaurant["id"])
       if query.is_a?(Restaurant)
+        query.set_attributes
+        query.save
         restaurant = query
       else
         restaurant = restaurant

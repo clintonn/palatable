@@ -3,16 +3,21 @@ class Restaurant < ApplicationRecord
   has_many :reviews
   has_many :users, through: :reviews
 
-  def populate_show
-    response = api_call
-    self.url = response["url"]
-    self.phone = response["contact"]["formattedPhone"]
-    self.twitter = response["contact"]["twitter"]
-    self.facebook = response["contact"]["facebook"]
-    self.menu = response["menu"]["url"] if response ["menu"]
-    photo1 = response["photos"]["groups"].first["items"].first
-    self.photo ="#{photo1["prefix"]}#{photo1["width"]}x#{photo1["height"]}#{photo1["suffix"]}"
-    self.price_tier = response["price"]["tier"]
+  def set_attributes
+    if last_updated.nil? || Time.now - last_updated > 90000
+      response = api_call
+      self.url = response["url"] if response["url"]
+      if response["contact"]
+        self.phone = response["contact"]["formattedPhone"]
+        self.twitter = response["contact"]["twitter"]
+        self.facebook = response["contact"]["facebook"]
+      end
+      self.menu = response["menu"]["url"] if response ["menu"]
+      photo1 = response["photos"]["groups"].first["items"].first if response["photos"]
+      self.photo  ="#{photo1["prefix"]}#{photo1["width"]}x#{photo1["height"]}#{photo1["suffix"]}"
+      self.price_tier = response["price"]["tier"] if response["price"]
+      self.last_updated = Time.now
+    end
   end
 
   def api_call
