@@ -1,4 +1,21 @@
-<h1>New Review</h1>
+<h3>
+  <%= link_to "Search Again", root_path%>
+</h3>
+
+<!-- remove above code in production -->
+
+
+<h1>Write a New Review</h1>
+<h2>
+      <% if @restaurant.id %>
+      for: <%= link_to @restaurant.name, restaurant_path(@restaurant)%>
+      <% else %>
+      for: <%= @restaurant.name %>
+      <% end %>
+</h2>
+<h4>
+      at: <%= @restaurant.spaced_address %>
+</h4>
 <%= form_for @review do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>

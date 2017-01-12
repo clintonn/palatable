@@ -36,5 +36,9 @@ class Restaurant < ApplicationRecord
       self.photo = "/default_header.jpg"
     end
   end
+# testing purposes
+  def spaced_address
+    address.split('~').join(' ')
+  end
 
 end

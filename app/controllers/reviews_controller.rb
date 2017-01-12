@@ -1,17 +1,23 @@
 class ReviewsController < ApplicationController
 
   def new
-    if find_user && (find_restaurant || session[:dummy_restaurant])
+    if !find_user
+      redirect_to root_path
+    elsif !find_restaurant
+      session[:dummy_restaurant]
       @review = Review.new
       render :new
+    elsif !@user.owns_restaurant_review(@restaurant).empty?
+      redirect_to @restaurant
     else
-      redirect_to root_path
+      @review = Review.new
     end
   end
 
   def dummy_new
     if find_user
-      @restaurant = Restaurant.new
+      @restaurant = Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"])
+      # above fills in info for dummy review page
       @review = Review.new
       render :new
     else
@@ -20,8 +26,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @restaurant ||= Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
+    if !params[:review][:restaurant_id].empty?
+      @restaurant = Restaurant.find(params[:review][:restaurant_id])
+    else
+      @restaurant = Restaurant.create(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
+    end
     @review = Review.new(review_params)
+
     @review.calculate_review_avg
     @restaurant.set_attributes
     @restaurant.save
@@ -40,7 +51,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-     find_review
+     @review = @review ? @review : find_review
      find_user
      if @user.owns_review?(@review)
        render :edit
@@ -58,9 +69,10 @@ class ReviewsController < ApplicationController
 
   def destroy
     find_review
+    find_user
     @restaurant = @review.restaurant
     @review.destroy
-    redirect_to root_path
+    redirect_to user_path (@user)
   end
 
   private

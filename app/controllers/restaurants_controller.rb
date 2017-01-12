@@ -9,6 +9,10 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @restaurant.set_attributes
+    @restaurant.save
+    find_user
+    @user_review = @user.owns_restaurant_review(@restaurant)[0]
   end
 
 
@@ -17,7 +21,5 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :foursquare_id)
   end
-
-
 
 end

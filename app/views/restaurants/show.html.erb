@@ -4,9 +4,14 @@
   }
 </style>
 
+
 <div class="header">
   <h1><%= @restaurant.name %></h1>
 </div>
+
+<h3>
+<%= link_to "Search Again", root_path%>
+</h3>
 
 <div class="socials">
   <% socials = {phone: @restaurant.phone, facebook: @restaurant.facebook, twitter: @restaurant.twitter, globe: @restaurant.url}.compact %>
@@ -27,7 +32,12 @@
   </a>
   <% end %>
 </div>
-<%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
+
+<% if @user && @user_review %>
+  <%= link_to 'Edit your review', edit_review_path(@user_review.id) %>
+<% else %>
+  <%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
+<% end %>
 
 <h4 id="review_list_header">Reviews list</h4>
 <% @restaurant.reviews.each do |review| %>
