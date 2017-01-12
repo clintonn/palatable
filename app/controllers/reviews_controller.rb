@@ -28,10 +28,9 @@ class ReviewsController < ApplicationController
     if !params[:review][:restaurant_id].empty?
       @restaurant = Restaurant.find(params[:review][:restaurant_id])
     else
-      @restaurant = Restaurant.create(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
+      @restaurant = Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
     end
     @review = Review.new(review_params)
-
     @review.calculate_review_avg
     @restaurant.set_attributes
     @restaurant.save
