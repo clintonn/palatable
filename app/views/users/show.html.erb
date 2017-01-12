@@ -1,13 +1,17 @@
 <h1> Welcome <%= @user.name %>! </h1>
+<%= link_to "Edit this Profile", edit_user_path(@user)%>
 
 <p>
-  <%= console %>
   <% @user.reviews.each do |review| %>
-  <h3><%= review.restaurant_name %> <br></h3>
-  <%= review.food_rating %><br>
-  <%= review.service_rating %><br>
-  <%= review.environment_rating %><br>
+  <%= review.restaurant_name %><br><br>
+  <%= link_to review.title, review %><br>
+  Food Rating: <%= review.food_rating %><br>
+  Service Rating: <%= review.service_rating %><br>
+  Environment Rating: <%= review.environment_rating %><br>
   <%= review.content %><br>
-  <%= link_to "Edit this review", review %>
+  <br>
+  <%= button_to "Edit this review", edit_review_path(review), method: 'get' %><br>
+  <br>
 <% end %>
-</p><br><br>
+</p>
+<br><br>

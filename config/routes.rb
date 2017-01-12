@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'application#index'
-  resources :users, only: [:show, :create]
+  resources :users, only: [:show, :create, :edit, :update]
   get '/reviews/new' => 'reviews#dummy_new', as: 'dummy_review'
   resources :reviews, except: [:index, :new]
   resources :upvotes, only: [:create, :destroy]
@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 # conflict start
   get '/restaurants/:restaurant_id/reviews/new' => 'reviews#new', as: 'new_review'
   post '/restaurants/:restaurant_id/reviews' => 'reviews#create', as: 'post_review'
-
   # analytics page
   get '/analytics' => 'application#analytics', as: 'analytics'
 end

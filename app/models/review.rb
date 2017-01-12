@@ -5,7 +5,8 @@ class Review < ApplicationRecord
   belongs_to :user
 
   def restaurant_name
-    Restaurant.find(self.restaurant_id).name
+    @testing = Restaurant.find(self.restaurant_id)
+    @testing.name
   end
 
   def calculate_review_avg

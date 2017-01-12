@@ -25,6 +25,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(session[:user_id])
+    @user.update(user_params)
+    redirect_to @user
   end
 
   # def destroy
