@@ -2,19 +2,19 @@
 <h2>for <%= link_to @review.restaurant.name, restaurant_path(@review.restaurant)%></h2>
 <%= form_for @review do |f| %>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, required: true %>
   <br>
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, required: true %>
   <br>
     <%= f.label :food_rating %>
-    <%= f.select :food_rating, options_for_select( (1..5).to_a, @review.food_rating)%>
+    <%= f.select :food_rating, options_for_select( (1..5).to_a, @review.food_rating), required: true%>
   <br>
   <%= f.label :environment_rating %>
-  <%= f.select :environment_rating, options_for_select( (1..5).to_a, @review.environment_rating)%>
+  <%= f.select :environment_rating, options_for_select( (1..5).to_a, @review.environment_rating), required: true%>
   <br>
     <%= f.label :service_rating %>
-    <%= f.select :service_rating, options_for_select( (1..5).to_a, @review.service_rating)%>
+    <%= f.select :service_rating, options_for_select( (1..5).to_a, @review.service_rating), required: true%>
   <br>
     <%= f.hidden_field :user_id, value: @review.user.id%>
     <%= f.hidden_field :restaurant_id, value: @review.restaurant.id %>
