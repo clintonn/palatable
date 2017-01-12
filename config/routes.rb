@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'application#index'
-  resources :users, only: [:show, :create, :edit, :update]
+  resources :users, only: [:show, :create, :edit, :update, :delete, :destroy]
   get '/reviews/new' => 'reviews#dummy_new', as: 'dummy_review'
   resources :reviews, except: [:index, :new]
   resources :upvotes, only: [:create, :destroy]

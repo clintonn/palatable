@@ -1,5 +1,5 @@
 <h1> Welcome <%= @user.name %>! </h1>
-<%= link_to "Edit this Profile", edit_user_path(@user)%>
+<%= link_to "Edit My Profile", edit_user_path(@user)%>
 
 <p>
   <% @user.reviews.each do |review| %>

@@ -29,8 +29,15 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
-  # def destroy
-  # end
+  def delete
+  end
+
+  def destroy
+    @user = User.find(session[:user_id])
+    @user.destroy
+    session.clear
+    redirect_to root_path
+  end
 
   private
 
