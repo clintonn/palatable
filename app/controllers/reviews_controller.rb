@@ -1,11 +1,16 @@
 class ReviewsController < ApplicationController
 
   def new
-    if find_user && (find_restaurant || session[:dummy_restaurant])
+    if !find_user
+      redirect_to root_path
+    elsif !find_restaurant
+      session[:dummy_restaurant]
       @review = Review.new
       render :new
+    elsif !@user.owns_restaurant_review(@restaurant).empty?
+      redirect_to @restaurant
     else
-      redirect_to root_path
+      @review = Review.new
     end
   end
 
@@ -39,7 +44,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-     find_review
+     @review = @review ? @review : find_review
      find_user
      if @user.owns_review?(@review)
        render :edit

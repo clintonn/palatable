@@ -9,4 +9,8 @@ class User < ApplicationRecord
     review.user == self
   end
 
+  def owns_restaurant_review(restaurant)
+    Review.where(["user_id = ? AND restaurant_id = ?", self.id, restaurant.id])
+  end
+
 end

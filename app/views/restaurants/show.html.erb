@@ -27,7 +27,12 @@
   </a>
   <% end %>
 </div>
-<%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
+
+<% if @user && @user_review %>
+  <%= link_to 'Edit your review', edit_review_path(@user_review.id) %>
+<% else %>
+  <%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
+<% end %>
 
 <h4 id="review_list_header">Reviews list</h4>
 <ol>
