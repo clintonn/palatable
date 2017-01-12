@@ -13,6 +13,11 @@ class RestaurantsController < ApplicationController
     @restaurant.save
     find_user
     @user_review = @user.owns_restaurant_review(@restaurant)[0]
+    if @user_review
+        @reviews = @restaurant.first_x_reviews(9)
+    else
+        @reviews = @restaurant.first_x_reviews(10)
+    end
   end
 
 

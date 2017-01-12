@@ -37,7 +37,7 @@
   <%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
 <% end %>
 
-<% unless @restaurant.reviews.empty? %>
+<% unless @reviews.empty? %>
 
   <h3 id="review_list_header">Review List</h3>
 
@@ -72,7 +72,7 @@
       <br>
   <% end %>
 
-  <% @restaurant.reviews.each do |review| %>
+  <% @reviews.each do |review| %>
   <% unless review.user.id == @user.id %>
     <div class="review">
       <div class="user-info">
