@@ -18,17 +18,25 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find_by(query: params[:query])
     query_url = "https://api.foursquare.com/v2/venues/search?v=20161016&query=#{@search.search}&intent=checkin&client_id=#{ENV['foursquare_client_id']}&client_secret=#{ENV['foursquare_client_secret']}&near=#{@search.location}&limit=12&categoryId=4d4b7105d754a06374d81259,4d4b7105d754a06376d81259"
-    resp = JSON.parse(RestClient.get(query_url))
-    @restaurants = resp["response"]["venues"]
-
-    @restaurants.map! do |restaurant|
-      query = Restaurant.find_by(foursquare_id: restaurant["id"])
-      if query.is_a?(Restaurant)
-        restaurant = query
+    call = RestClient.get(query_url){ |response, request, result, &block|
+      case response.code
+      when 200
+        response.return!
       else
-        restaurant = restaurant
+        flash[:message] = "Error. Please specify your search query."
+        redirect_to root_path and return
       end
-    end
+      }
+      resp = JSON.parse(call)
+      @restaurants = resp["response"]["venues"]
+      @restaurants.map! do |restaurant|
+        query = Restaurant.find_by(foursquare_id: restaurant["id"])
+        if query.is_a?(Restaurant)
+          restaurant = query
+        else
+          restaurant = restaurant
+        end
+      end
     # render :results
     # New implementation below: Add search instance instead, redirect to show page for url query handling
     # edit: nvm lol

@@ -1,5 +1,9 @@
 <h1>Palatable</h1>
 
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+
 <%= form_for @search do |f| %>
   <%= f.text_field :search, placeholder: 'Search' %>
   <%= f.text_field :location, placeholder: 'ZIP or Address' %>
