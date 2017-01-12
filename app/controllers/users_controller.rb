@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(session[:user_id])
+    @user.reviews.destroy_all
     @user.destroy
     session.clear
     redirect_to root_path
