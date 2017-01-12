@@ -20,6 +20,10 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def all_reviews
+    render :'/restaurants/all_reviews'
+  end
+
 
   private
 

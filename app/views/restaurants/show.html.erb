@@ -76,7 +76,8 @@
   <% unless review.user.id == @user.id %>
     <div class="review">
       <div class="user-info">
-        <%= link_to review.user.name, review.user %> said:
+        <%= link_to review.user.name, user_path(review.user) %> said:
+
       </div>
       <section class="review-content">
           <section class="review-title">
