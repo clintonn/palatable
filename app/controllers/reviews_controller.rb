@@ -20,9 +20,10 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
+    @restaurant ||= Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
     @review = Review.new(review_params)
     @review.calculate_review_avg
+    @restaurant.set_attributes
     @restaurant.save
     @review.restaurant_id ||= @restaurant.id
     if @review.save
