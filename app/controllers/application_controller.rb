@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def index
+    find_user
     @search = Search.new
   end
 

@@ -40,7 +40,11 @@
   float: right;
 }
 
-.session_controls input {
+.session_controls * {
+  display: inline-block;
+}
+
+.session_controls .nav_elements {
   -webkit-border-radius: 26;
   -moz-border-radius: 26;
   border-radius: 5px;
@@ -56,6 +60,6 @@
   cursor: pointer;
 }
 
-.session_controls input:hover {
+.session_controls .nav_elements:hover {
   text-decoration: none;
 }
