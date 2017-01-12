@@ -16,6 +16,6 @@ class Review < ApplicationRecord
     save
   end
 
-  
+
 
 end
