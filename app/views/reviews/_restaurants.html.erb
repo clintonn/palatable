@@ -1,0 +1,30 @@
+  <div class="full_width_wrapper">
+    <h5 class="directions">Tag your restaurant:</h5>
+  </div>
+  <div id="results_inner_container">
+    <% @restaurants.each do |restaurant| %>
+    <div class="preview_result_card">
+      <div class="result_card_background">
+      <% if restaurant.is_a?(Restaurant) %>
+      <%= radio_button("restaurant", "foursquare_id", restaurant.foursquare_id, class: 'hidden_radio', required: true) %>
+      <label class="result_name" for="restaurant_foursquare_id_<%= restaurant.foursquare_id %>"><%= restaurant.name %></h4>
+      <p>
+        <% restaurant.address.split("~").each do |address_line| %>
+        <%= address_line %><br />
+        <% end %>
+      </p>
+
+      <% else %>
+      <%= radio_button("restaurant", "foursquare_id", restaurant["id"], class: 'hidden_radio', required: true) %>
+      <label class="result_name" for="restaurant_foursquare_id_<%= restaurant["id"] %>"><%= restaurant["name"] %></h4>
+      <p>
+        <% restaurant["location"]["formattedAddress"].each do |address_line| %>
+        <%= address_line %><br />
+        <% end %>
+      </p>
+      <% end %>
+    </div>
+
+    </div>
+    <% end %>
+  </div>

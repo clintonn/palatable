@@ -1,0 +1,33 @@
+<!-- this is the preview partial -->
+<div class="preview_wrapper">
+<%= form_for @review do |f| %>
+  <div class="full_width_wrapper">
+    <%= f.text_field :title, id: 'review_title', autocomplete: "off", required: true %>
+  </div>
+  <div class="full_width_wrapper">
+    <h4 id="byline">By <%= link_to @user.name, @user, rel: "author" %></h4>
+  </div>
+  <div class="full_width_wrapper">
+    <%= f.text_area :content, id: 'review_content', autofocus: true, required: true %>
+  </div>
+  <div class="full_width_wrapper">
+    <h5 class="directions">On a scale of 1-5...</h4>
+  </div>
+  <div class="rating_labels_group">
+  <%= f.label :food_rating, 'How was the food?', class: "rating_label" %>
+  <%= f.label :service_rating, 'How was the service?', class: "rating_label" %>
+  <%= f.label :environment_rating, 'How were the vibes?', class: "rating_label" %>
+  </div>
+  <div class="ratings_group">
+  <%= f.number_field :food_rating, in: 1..5, class: "rating_scale", required: true %>
+  <%= f.number_field :service_rating, in: 1..5, class: "rating_scale", required: true %>
+  <%= f.number_field :environment_rating, in: 1..5, class: "rating_scale", required: true %>
+  </div>
+  <%= render "restaurants" %>
+  <div class="full_width_wrapper">
+  </div>
+  <div id="submit_post">
+    <%= f.submit 'Publish Review', class: "nav_elements", id: "post_button" %>
+  </div>
+<% end %>
+</div>
