@@ -13,4 +13,13 @@ class User < ApplicationRecord
     Review.where(["user_id = ? AND restaurant_id = ?", self.id, restaurant.id])
   end
 
+  # analytics
+  def self.top_reviewers
+    hash = {}
+    User.all.each do |reviewer|
+      hash[reviewer.name] = reviewer.reviews.count
+    end
+    hash.sort_by {|key, value| value }.reverse[0..4]
+  end
+
 end
