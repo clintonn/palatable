@@ -9,7 +9,10 @@ class ApplicationController < ActionController::Base
   end
 
   def analytics
+    find_user
   end
+
+
 
   private
 
