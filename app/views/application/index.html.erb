@@ -1,6 +1,11 @@
 <% if flash[:message] %>
-  <%= flash[:message] %>
+<div class="outer-container">
+  <p class="notice">
+    <%= flash[:message] %>
+  </p>
+</div>
 <% end %>
+
 
 <% if @user %>
   <%= form_for @review, url: post_from_homepage_path do |f| %>

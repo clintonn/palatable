@@ -1,8 +1,9 @@
   <div class="full_width_wrapper">
     <h5 class="directions">Tag your restaurant:</h5>
   </div>
-  <div id="results_inner_container">
-    <% @restaurants.each do |restaurant| %>
+  <div class="full_width_wrapper">
+    <div id="results_inner_container">
+      <% @restaurants.each do |restaurant| %>
     <div class="preview_result_card">
       <div class="result_card_background">
       <% if restaurant.is_a?(Restaurant) %>
@@ -28,3 +29,4 @@
     </div>
     <% end %>
   </div>
+</div>

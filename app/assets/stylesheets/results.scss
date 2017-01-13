@@ -1,9 +1,9 @@
 
 
-#results_inner_container {
-  @include span-columns(11);
-  @include shift(2);
-}
+// #results_inner_container {
+//   @include span-columns(9);
+//   // todo figure out why this results page is wonky and needs to be hard-coded
+// }
 
 .result_card {
   @include span-columns(3);
@@ -23,6 +23,10 @@
   @include shift(5);
   font-family: $monospace-type;
   font-weight: bolder;
+}
+
+#results_container {
+  @include outer-container;
 }
 
 .result_card h4 a {

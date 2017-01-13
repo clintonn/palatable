@@ -13,10 +13,6 @@
   <h1><%= @restaurant.name %></h1>
 </div>
 
-<div class="notice">
-  <%= flash[:notice] if flash[:notice] %>
-</div>
-
 <div class="socials">
   <% socials = {phone: @restaurant.phone, facebook: @restaurant.facebook, twitter: @restaurant.twitter, globe: @restaurant.url}.compact %>
   <% socials.each do |k, v| %>
@@ -36,8 +32,14 @@
   </a>
   <% end %>
 </div>
-<div class="reviews_wrapper">
 
+<% if flash[:notice] %>
+<div class="notice">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+
+<div class="reviews_wrapper">
   <% if @reviews.count == 0 %>
   <p class="notice">No reviews posted for this place yet... be the first!</p>
   <% end %>
@@ -48,17 +50,17 @@
 
 <% unless @reviews.empty? %>
 
-  <h3 id="review_list_header">Review List</h3>
+  <h3 class="review_list_header">Review List</h3>
 
   <% if @user && @user_review %>
-      <h4 id="review_list_header">Your Review, <%= link_to @user.name, @user %></h4>
-        <%= button_to 'Edit your review', edit_review_path(@user_review.id), method: 'get' %>
+      <div class="centerer"><h4>Here's your review, <%= link_to @user.name, @user %></h4>
 
     <div class="review">
-      <div class="user-info">
-        <%= link_to @user.name, @user %> said:
+      <div class="review-title">
+        <%= link_to @user_review.title, @user_review %>
       </div>
-
+    </div>
+  </div>
       <section class="review-content">
           <section class="review-title">
             <%= @user_review.title %>
@@ -80,6 +82,7 @@
             <%= @user_review.content %>
         </section>
         </section>
+        <%= button_to 'Edit your review', edit_review_path(@user_review.id), method: 'get' %>
       </div>
       <br>
   <% end %>

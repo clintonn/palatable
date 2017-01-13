@@ -31,14 +31,26 @@ body {
    color: #444;
  }
 
+ .notice {
+  font-family: $monospace-type;
+  font-size: .8em;
+  background-color: #ffcc99;
+  padding: 1em;
+  text-align: center;
+  @include span-columns(5);
+  @include shift(3.5);
+  @include clearfix;
+  border-radius: 10px;
+}
+
+.outer_wrapper {
+  @include outer-container;
+}
+
 .directive {
   font-family: $title-type;
 }
 
- .notice {
-   text-align: center;
-   margin: 2em;
- }
 
  a:hover {
    color: $softorange;
@@ -173,6 +185,16 @@ body {
   font-family: $title-type;
   font-size: 3em;
   color: white;
+}
+
+#profile_name {
+  text-align: center;
+  @include fill-parent();
+}
+
+#edit_profile_button {
+  @include span-columns(3);
+  @include shift(4.5);
 }
 
 footer {
