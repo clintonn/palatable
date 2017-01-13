@@ -1,34 +1,46 @@
-<h1>Analytics: Restaurant Reviews</h1>
+<h1>Trending: Restaurants</h1>
 
-<h2>Top 5 restaurants with the highest rating:</h2>
-<%= column_chart Restaurant.top_5_rated_restaurants, max: 5, colors: ["orange"] %></br>
+<h2>Top 5 restaurants with the highest overall rating:</h2>
+<%= column_chart Restaurant.top_5_rated_restaurants, max: 5, colors: ["rgba(255,83,77,1)"] %></br>
 
 <h2>Top 5 restaurants with the highest food rating:</h2>
-<%= column_chart Restaurant.top_5_food_rated, max: 5, colors: ["orange"] %></br>
+<%= column_chart Restaurant.top_5_food_rated, max: 5, colors: ["rgba(255,83,77,1)"] %></br>
 
 <h2>Top 5 restaurants with the highest environment rating:</h2>
-<%= column_chart Restaurant.top_5_environment_rated, max: 5, colors: ["orange"] %></br>
+<%= column_chart Restaurant.top_5_environment_rated, max: 5, colors: ["rgba(255,83,77,1)"] %></br>
 
 <h2>Top 5 restaurants with the highest service rating:</h2>
-<%= column_chart Restaurant.top_5_service_rated, max: 5, colors: ["orange"] %></br>
+<%= column_chart Restaurant.top_5_service_rated, max: 5, colors: ["rgba(255,83,77,1)"] %></br>
 
-<!-- <h2>Top 5 most reviewed restaurants:</h2>
+<h2>Top 5 most reviewed restaurants:</h2>
+<%= column_chart Restaurant.most_reviewed_restaurant, colors: ["rgba(255,83,77,1)"] %>
 
 <h2>Top 5 restaurants with the highest food/lowest service rating:</h2>
+<%= column_chart Restaurant.highest_food_lowest_service, max: 5, colors: ["rgba(255,83,77,1)"] %>
 
-<h2>Top 5 restaurants with the lowest rating:</h2>
+<h2>Top 5 restaurants with the lowest overall rating:</h2>
+<%= column_chart Restaurant.lowest_5_rated_restaurants, max: 5, colors: ["rgba(255,83,77,1)"] %></br>
 
+<h1>Trending: Users</h1>
 
-<h1>Analytics: Users</h1>
+<h2>Top 5 users who have written the most reviews:</h2>
+<%= column_chart User.top_reviewers, max: 5, colors: ["rgba(255,83,77,1)"] %>
 
-<h2>Top 5 users who have written the most reviews:</h2> -->
-
-
-<h1>Analytics: Location</h1>
+<h1>Trending: Location</h1>
 
 <h2>Top 5 most popular location searches:</h2>
 <p>
-  <% Review.most_searched_zipcode.each do |obj| %>
-    <%= obj.location %>: <%= obj.count %><br>
-  <% end %>
+  <table>
+    <tr>
+      <th>Zipcode</th>
+      <th>Count</th>
+    </tr>
+    <% Review.most_searched_zipcode.each do |obj| %>
+    <tr>
+      <td><%= obj.location %></td>
+      <td><%= obj.count %></td>
+    </tr>
+    <% end %>
+</table>
+
 </p>

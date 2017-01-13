@@ -43,11 +43,12 @@ class Restaurant < ApplicationRecord
     Review.where(restaurant_id: self.id).order("updated_at DESC").limit(10)
   end
 
-# testing purposes
+  # testing purposes
   def spaced_address
     address.split('~').join(' ')
   end
 
+  # analytics
   def restaurant_avg_rating
     sum = 0
     self.reviews.each do |review|
@@ -64,6 +65,14 @@ class Restaurant < ApplicationRecord
     hash.sort_by {|key, value| value }.reverse[0..4]
   end
 
+  def self.lowest_5_rated_restaurants
+    hash = {}
+    Restaurant.all.each do |restaurant|
+      hash[restaurant.name] = restaurant.restaurant_avg_rating
+    end
+    hash.sort_by {|key, value| value }[0..4]
+  end
+
   def avg_food_rating
     sum = 0
     self.reviews.each do |review|
@@ -76,7 +85,7 @@ class Restaurant < ApplicationRecord
     hash = {}
     Restaurant.all.each do |restaurant|
       hash[restaurant.name] = restaurant.avg_food_rating
-    end
+    end # returns a hash here
     hash.sort_by {|key, value| value }.reverse[0..4]
   end
 
@@ -111,25 +120,39 @@ class Restaurant < ApplicationRecord
     end
     hash.sort_by {|key, value| value }.reverse[0..4]
   end
+
+  def self.most_reviewed_restaurant
+    hash = {}
+    Restaurant.all.each do |restaurant|
+      hash[restaurant.name] = restaurant.reviews.count
+    end
+    hash.sort_by {|key, value| value }.reverse[0..4]
+  end
+
+  def self.food_delta_helper
+    hash = {}
+    Restaurant.all.each do |restaurant|
+      hash[restaurant.name] = restaurant.avg_food_rating
+    end
+    hash
+  end
+
+  def self.service_delta_helper
+    hash = {}
+    Restaurant.all.each do |restaurant|
+      hash[restaurant.name] = restaurant.avg_service_rating
+    end
+    hash
+  end
+
+  def self.highest_food_lowest_service
+    hash1 = (Restaurant.food_delta_helper) # restaurant.name, food_rating
+    hash2 = Restaurant.service_delta_helper # restaurant.name, service_rating
+    hash3 = {}
+    hash1.keys.each do |res_name|
+      hash3[res_name] = hash1[res_name].to_f - hash2[res_name].to_f
+    end
+    hash3.sort_by {|key, value| value }.reverse[0..4]
+  end
+
 end
-
-
-
-# def self.highest_environment
-# end
-#
-# def self.highest_service
-# end
-#
-# def self.most_reviewed_restaurant
-# end
-#
-# def self.highest_food_lowest_service
-# end
-#
-# def self.lowest_rated_restaurant
-# end
-#
-# def self.most_active_users
-#   # User.select()
-# end
