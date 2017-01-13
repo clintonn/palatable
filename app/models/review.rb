@@ -3,12 +3,11 @@ class Review < ApplicationRecord
   has_many :upvotes
   belongs_to :restaurant
   belongs_to :user
-
+  validates :title, :content, :food_rating, :environment_rating, :service_rating, :restaurant_id, :user_id, presence: true
   validates_uniqueness_of :user_id, :scope => [:restaurant_id]
 
   def restaurant_name
-    @testing = Restaurant.find(self.restaurant_id)
-    @testing.name
+    Restaurant.find(self.restaurant_id).name
   end
 
   def calculate_review_avg
@@ -24,5 +23,4 @@ class Review < ApplicationRecord
   def self.most_searched_zipcode
     Search.select("location, count('location')").group(:location).order("count('location') desc").limit(5)
   end
-
 end

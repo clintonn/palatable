@@ -9,6 +9,10 @@
   <h1><%= @restaurant.name %></h1>
 </div>
 
+<div class="notice">
+  <%= flash[:notice] if flash[:notice] %>
+</div>
+
 <h3>
 <%= link_to "Search Again", root_path%>
 </h3>

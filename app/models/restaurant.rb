@@ -2,6 +2,7 @@ class Restaurant < ApplicationRecord
 
   has_many :reviews
   has_many :users, through: :reviews
+  validates :foursquare_id, uniqueness: true
 
   def set_attributes
     # TO-DO: REFACTOR
