@@ -9,10 +9,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # additional logic here for validations
-    @user.save
-    session[:user_id] = @user.id
-    redirect_to @user
+    if @user.valid?
+      @user.save
+      session[:user_id] = @user.id
+      redirect_to @user
+    else
+      flash[:notice] = "Invalid username or password."
+      redirect_to login_path
+    end
   end
 
   def show
@@ -26,7 +30,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(session[:user_id])
     @user.update(user_params)
-    redirect_to @user
+    if @user.valid?
+      redirect_to @user
+    else
+      flash[:notice] = "Invalid email or password."
+      redirect_to edit_user_path
+    end
   end
 
   def destroy

@@ -2,7 +2,9 @@ class Restaurant < ApplicationRecord
 
   has_many :reviews
   has_many :users, through: :reviews
+
   validates :foursquare_id, uniqueness: true
+  validates :name, :address, presence: true
 
   def set_attributes
     if last_updated.nil? || Time.now - last_updated > 90000
