@@ -41,7 +41,7 @@ class Restaurant < ApplicationRecord
 
 
   def first_x_reviews(x)
-    Review.where(restaurant_id: 22).order("updated_at DESC").limit(10)
+    Review.where(restaurant_id: self.id).order("updated_at DESC").limit(10)
   end
 
 # testing purposes

@@ -4,7 +4,6 @@ class ReviewsController < ApplicationController
     if !find_user
       redirect_to root_path
     elsif !find_restaurant
-      session[:dummy_restaurant]
       @review = Review.new
       render :new
     elsif !@user.owns_restaurant_review(@restaurant).empty?
@@ -16,7 +15,7 @@ class ReviewsController < ApplicationController
 
   def dummy_new
     if find_user
-      @restaurant = Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"])
+      @restaurant = Restaurant.new(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
       # above fills in info for dummy review page
       @review = Review.new
       render :new
@@ -29,17 +28,20 @@ class ReviewsController < ApplicationController
     if !params[:review][:restaurant_id].empty?
       @restaurant = Restaurant.find(params[:review][:restaurant_id])
     else
-      @restaurant = Restaurant.create(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
+      @restaurant = Restaurant.find_by(foursquare_id: params[:review][:foursquare_id])
+      @restaurant ||= Restaurant.create(name: session[:dummy_restaurant]["name"], address: session[:dummy_restaurant]["address"], foursquare_id: session[:dummy_restaurant]["foursquare_id"])
     end
     @review = Review.new(review_params)
     @review.calculate_review_avg
     @restaurant.set_attributes
     @restaurant.save
+
     @review.restaurant_id ||= @restaurant.id
     if @review.save
       redirect_to review_path(@review)
     else
-      redirect_to new_review_path
+      flash[:notice] = "You have already submitted a review for this restaurant."
+      redirect_to new_review_path(@restaurant)
     end
   end
 
@@ -76,7 +78,7 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-        params.require(:review).permit(:title, :content, :food_rating, :environment_rating, :service_rating, :user_id, :restaurant_id)
+      params.require(:review).permit(:title, :content, :food_rating, :environment_rating, :service_rating, :user_id, :restaurant_id)
     end
 
     def find_review
