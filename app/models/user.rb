@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :upvotes, through: :reviews
   has_secure_password
 
+  validates :name, :email, presence: true
 
   def owns_review?(review)
     review.user == self

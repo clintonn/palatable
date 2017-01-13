@@ -4,8 +4,10 @@ class Review < ApplicationRecord
   has_many :upvotes
   belongs_to :restaurant
   belongs_to :user
+
   validates :title, :content, :food_rating, :environment_rating, :service_rating, :restaurant_id, :user_id, presence: true
   validates_uniqueness_of :user_id, :scope => [:restaurant_id]
+  validates :food_rating, :environment_rating, :service_rating, numericality: { only_integer: true }
 
   def restaurant_name
     Restaurant.find(self.restaurant_id).name
