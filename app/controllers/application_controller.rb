@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   def index
     find_user
+    @review = Review.new
     @search = Search.new
   end
 
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_user
-    # redirect_to root_path if !logged_in?
+    redirect_to root_path if !logged_in?
   end
 
   def logged_in?

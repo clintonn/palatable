@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   post '/restaurants/:restaurant_id/reviews' => 'reviews#create', as: 'post_review'
   # analytics page
   get '/analytics' => 'application#analytics', as: 'analytics'
+  post '/preview' => 'reviews#homepage_poster', as: 'post_from_homepage'
 end

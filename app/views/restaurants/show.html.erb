@@ -1,6 +1,10 @@
 <style>
   .header {
-    background-image: url("<%= @restaurant.photo %>");
+    background: linear-gradient(45deg,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ), url("<%= @restaurant.photo %>") center;
+    background-size: cover;
   }
 </style>
 
@@ -12,10 +16,6 @@
 <div class="notice">
   <%= flash[:notice] if flash[:notice] %>
 </div>
-
-<h3>
-<%= link_to "Search Again", root_path%>
-</h3>
 
 <div class="socials">
   <% socials = {phone: @restaurant.phone, facebook: @restaurant.facebook, twitter: @restaurant.twitter, globe: @restaurant.url}.compact %>
@@ -36,9 +36,14 @@
   </a>
   <% end %>
 </div>
+<div class="reviews_wrapper">
+
+  <% if @reviews.count == 0 %>
+  <p class="notice">No reviews posted for this place yet... be the first!</p>
+  <% end %>
 
 <% if @user && !@user_review %>
-  <%= link_to 'Create a new review', new_review_path(@restaurant.id) %>
+  <%= button_to 'Post a Review', new_review_path(@restaurant.id), method: :get, class: "nav_elements", id: "new_review_button" %>
 <% end %>
 
 <% unless @reviews.empty? %>
@@ -109,3 +114,4 @@
     <br>
   <% end %>
 <% end %>
+</div>

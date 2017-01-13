@@ -1,11 +1,28 @@
-<h1>Palatable</h1>
-
 <% if flash[:message] %>
   <%= flash[:message] %>
 <% end %>
 
-<%= form_for @search do |f| %>
-  <%= f.text_field :search, placeholder: 'Search' %>
-  <%= f.text_field :location, placeholder: 'ZIP or Address', required: true %>
-  <%= f.submit 'Search' %>
+<% if @user %>
+  <%= form_for @review, url: post_from_homepage_path do |f| %>
+    <div class="full_width_wrapper">
+      <%= f.text_field :title, placeholder: 'Title', autocomplete: "off"; %>
+    </div>
+
+    <div class="full_width_wrapper">
+      <%= f.text_area :content, placeholder: 'Start blogging about your most recent restaurant experience here.' %>
+    </div>
+    <div class="query_box_wrapper">
+      <%= f.text_field :search, placeholder: "Restaurant name?", class: "query_box" %>
+    <%= f.text_field :location, placeholder: 'And where was it?', class: "query_box" %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+  </div>
+  <div class="full_width_wrapper"></div>
+    <div id="submit_post">
+      <%= f.submit 'Preview post', class: 'nav_elements', id: 'post_button' %>
+    </div>
+  <% end %>
+<% else %>
+<div id="splash_wrapper">
+  <h1 id="cta">Make your restaurant reviews beautiful. <%= link_to "Click here", login_path %> to get started.</h1>
+</div>
 <% end %>

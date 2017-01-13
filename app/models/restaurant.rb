@@ -5,12 +5,12 @@ class Restaurant < ApplicationRecord
   validates :foursquare_id, uniqueness: true
 
   def set_attributes
-    # TO-DO: REFACTOR
     if last_updated.nil? || Time.now - last_updated > 90000
       response = api_call
       set_contact_info(response) if response["url"]
       set_photos(response)
-
+      self.name = response["name"]
+      self.address = response["location"]["formattedAddress"].join("~")
       self.url = response["url"] if response["url"]
       self.menu = response["menu"]["url"] if response ["menu"]
       self.price_tier = response["price"]["tier"] if response["price"]
@@ -31,8 +31,9 @@ class Restaurant < ApplicationRecord
 
   def set_photos(response)
     if !response["photos"]["groups"].empty?
-      photo1 = response["photos"]["groups"].first["items"].first
-      self.photo = "#{photo1["prefix"]}#{photo1["width"]}x#{photo1["height"]}#{photo1["suffix"]}"
+      photos = response["photos"]["groups"][0]["items"]
+      photo = photos.max_by {|attrs| attrs["width"]}
+      self.photo = "#{photo["prefix"]}#{photo["width"]}x#{photo["height"]}#{photo["suffix"]}"
     else
       self.photo = "/default_header.jpg"
     end

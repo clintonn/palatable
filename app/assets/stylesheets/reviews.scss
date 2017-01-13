@@ -1,32 +1,205 @@
-.header {
-  background-size: 100%;
-  font-size: 2em;
-  color: white;
+.preview_wrapper {
+  @include outer-container;
+}
+
+#review_title {
+  @include span-columns(8);
+  @include shift(2);
+  font-size: 3em;
+  font-family: $title-type;
   text-align: center;
+}
+
+#review_content {
+  @include span-columns(8);
+  @include shift(2);
+  box-sizing: border-box;
   font-family: $serif-type;
-  height: 40vh;
+  font-size: 1.2em;
+  line-height: 1.8em;
+  overflow: auto;
+  min-height: 50vh;
+  overflow-x: hidden;
+}
 
-  background-size: 100%;
-  font-size: 2em;
-  color: white;
-  text-align: center;
-  font-family: "RomanaBT-Bold", "Georgia", serif;
-  position: relative;
-  top: 0;
-  left: 0;
+.review_text {
+  @include span-columns(8);
+  @include shift(2);
+  font-family: $serif-type;
+  line-height: 1.7em;
+  font-size: 1.2em;
+}
+
+.review_text p:first-child::first-letter {
   float: left;
-  margin: -.25em 0 1em -.25em;
-  width: 100vw;
-
+  color: $softorange;
+  font-family: $title-type;
+  font-size: 6em;
+  padding-top: .45em;
+  padding-right: .3em;
+  padding-bottom: .16em;
 }
 
-.header h1 {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0;
+.directions {
+  width: 16%;
+  @include shift(5);
+  font-family: $monospace-type;
+  color: $lightgrey;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  border-bottom: 2px solid #ddd;
+  text-align: center;
+  padding: 1em;
 }
 
-i a {
-  color: black;
+.result_name {
+  font-family: $title-type;
+  margin: 1em 0;
+}
+
+#results_inner_container {
+  @include shift(0.5);
+}
+
+.rating_label {
+  @include span-columns(3);
+  font-family: $monospace-type;
+  font-size: .8em;
+  text-align: center;
+}
+
+.rating_labels_group {
+  margin-left: 20vw;
+  @include clearfix;
+}
+
+.ratings_group {
+  margin-left: 20vw;
+  @include clearfix;
+}
+
+.rating_scale {
+  @include span-columns(3);
+  font-family: $monospace-type;
+  font-size: 1.3em;
+  text-align: center;
+  border: 0;
+  border-bottom: 1px solid lightgrey;
+  padding: .5em;
+}
+
+.result_card_background input {
+  display: none;
+}
+
+input.hidden_radio:checked + label {
+  color: $softorange;
+  transition: all .3s;
+}
+
+.result_card_background p {
+  cursor: pointer;
+}
+
+label.result_name {
+  cursor: pointer;
+}
+
+.preview_result_card {
+  @include span-columns(3);
+  @include omega(4n);
+  padding: 1.1em;
+  text-align: center;
+}
+
+.preview_result_card p {
+  font-family: $monospace-type;
+  color: $lightgrey;
+  font-size: .8em;
+  margin: .8em, 0;
+}
+
+.full_width_wrapper {
+  @include fill-parent();
+  @include clearfix;
+}
+
+#submit_post {
+  @include shift(5);
+}
+
+#submit_post input {
+  @include span-columns(3);
+}
+
+#post_button {
+  @include span-columns(2);
+  margin: 4em 0,
+}
+
+#post_button:hover {
+  background-color: $softorange;
+  color: white;
+  transition: all .2s;
+}
+
+.new_review_page_button {
+  @include fill-parent();
+}
+.new_review_page_button input {
+  @include shift(4);
+  @include span-columns(3);
+}
+
+hr.divider {
+  width: 30%;
+}
+
+#byline {
+  @include fill-parent();
+  @include clearfix;
+  @include span-columns(4);
+  @include shift(4);
+  font-family: $monospace-type;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $lightgrey;
+  text-align: center;
+}
+
+#byline a {
+  color: $lightgrey;
+}
+
+#byline a:hover {
+  color: $softorange;
+  transition: color .5s;
+}
+
+input#review_title:focus, textarea#review_content:focus {
+  border: 0;
+}
+
+input#review_title, input#review_title:focus {
+  text-align: center;
+  padding: 1em;
+}
+
+
+input#review_title, textarea#review_content {
+  border: 0;
+  resize: none;
+}
+
+#new_review_directive {
+  @include shift(3.4);
+}
+
+#restaurant_address {
+  @include span-columns(4);
+  @include shift(4);
+  margin-top: 0;
 }

@@ -1,35 +1,46 @@
-<h3>
-  <%= link_to "Search Again", root_path%>
-</h3>
-
-    <h1>
-          Restaurant: <%= link_to @review.restaurant.name, restaurant_path(@review.restaurant)%>
+<div class="reviews_wrapper">
+    <h1 class="directive review-title" id="review_title"><%= @review.title %>
     </h1>
-  <br>
-    <h2>
-      Title: <%= @review.title %>
-    </h2>
-  <br>
-    <h3>
-    Review by: <%= link_to @review.user.name, user_path(@review.user)%>
-    </h3>
-  <br>
-    <h4>
-    Content: <%= @review.content %>
+    <div class="full_width_wrapper">
+      <h4 id="byline"><%= link_to @review.user.name, user_path(@review.user)%>
+
+    </div>
     </h4>
-  <br>
+    <hr class="divider" />
+    <div class="full_width_wrapper">
+    <section class="review_text">
+      <%= simple_format(@review.content.gsub(/\r\n/, '<br/>')) %>
+    </section>
+  </div>
+    <div class="full_width_wrapper">
+    <section class="show_ratings">
+    <div class="rating_labels_group">
+      <p class="rating_label">FOOD</p>
+      <p class="rating_label">SERVICE</p>
+      <p class="rating_label">ENVIRONMENT</p>
+    </div>
+    <div class="ratings_group">
+      <p class="rating_scale">
+        <% @review.food_rating.times do |n| %><i class="fa fa-star"></i><% end %><% (5 - @review.food_rating).times do |n| %><i class="fa fa-star-o"></i><% end %>
+      </p>
+    <p class="rating_scale">
+      <% @review.service_rating.times do |n| %><i class="fa fa-star"></i><% end %><% (5 - @review.service_rating).times do |n| %><i class="fa fa-star-o"></i><% end %>
+    </p>
+    <p class="rating_scale">    <% @review.environment_rating.times do |n| %><i class="fa fa-star"></i><% end %><% (5 - @review.environment_rating).times do |n| %><i class="fa fa-star-o"></i><% end %></p>
+    </div>
 
-    Food Rating: <%= @review.food_rating %>
-  <br>
-  Environment Rating: <%= @review.environment_rating %>
-  <br>
-    Service Rating: <%= @review.service_rating %>
+    </section>
+    </div>
 
-<% if @owned %>
-    <%= form_tag edit_review_path, method: 'get' do %>
-      <%= submit_tag "Edit this Review" %>
+  <div class="full_width_wrapper">
+    <% if @owned %>
+        <%= form_tag edit_review_path, method: 'get' do %>
+          <%= submit_tag "Edit this Review", class: 'nav_elements' %>
+        <% end %>
+        <%= form_tag review_path, method: 'delete' do %>
+          <%= submit_tag "Delete this Review", class: 'nav_elements' %>
+        <% end %>
     <% end %>
-    <%= form_tag review_path, method: 'delete' do %>
-      <%= submit_tag "Delete this Review" %>
-    <% end %>
-<% end %>
+  </div>
+
+</div>

@@ -16,3 +16,11 @@
 //= require_tree .
 //= require Chart.bundle
 //= require chartkick
+
+var ta = document.querySelector('textarea');
+ta.style.display = 'none';
+autosize(ta);
+
+
+ta.style.display = 'block';
+autosize.update(ta);

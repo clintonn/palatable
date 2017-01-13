@@ -16,41 +16,210 @@
  @import "bourbon";
  @import "neat";
  @import "typography";
+ @import "variables";
  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
  @import "results";
  @import "restaurants";
+ @import "reviews";
+
+body {
+  font-family: $serif-type;
+  font-size: .9em;
+}
+
+ a {
+   color: #444;
+ }
+
+.directive {
+  font-family: $title-type;
+}
+
+ .notice {
+   text-align: center;
+   margin: 2em;
+ }
+
+ a:hover {
+   color: $softorange;
+   transition: color .3s;
+ }
+
+
+ .new_search input {
+   border: 0;
+   border-bottom: 2px solid #ccc;
+   font-family: 'Roboto Mono';
+   font-size: 1em;
+   height: 4em;
+   color: #777;
+}
+
+.submit_wrapper {
+  @include span-columns(1);
+  @include reset-display;
+  margin-top: 0.5em;
+}
+
+.search_icon {
+  position: absolute;
+}
+
+#search_button {
+  width: 35px;
+  height: 35px;
+  opacity: 0;
+  z-index: 1;
+  padding: 0;
+}
+
+#search_form {
+  @include outer-container;
+}
+
+#search_field {
+  @include span-columns(3);
+  @include shift(1);
+  font-size: .8em;
+  margin-top: -0.6vw;
+  margin-bottom: 0;
+}
+
+#location_field {
+  @include span-columns(3);
+  font-size: .8em;
+  margin-top: -0.6vw;
+  margin-bottom: 0;
+  margin-right: 0;
+}
+
+ #{$all-text-inputs-focus} {
+   color: black;
+   outline: none;
+   border-bottom: 3px solid black;
+   transition: border-bottom .1s;
+ }
+
+.new_search {
+  text-align: center;
+}
+.new_search input {
+  text-align: center;
+}
 
 #nav {
   margin: 3vw;
+  padding-bottom: 3em;
 }
 
 #top-logo {
   display: inline-block;
+  @include span-columns(2);
 }
 
-#top-logo a {
+#top-logo a, #footer_logo {
   font-family: 'RomanaBT-Bold';
   font-size: 2em;
   color: #000;
   display: inline-block;
 }
 
+#footer_logo {
+  @include span-columns(4);
+  @include shift(4);
+  @include clearfix;
+  text-align: center;
+}
+
 .session_controls {
-  margin: 0.1vw 2vw;
   float: right;
+}
+
+
+.footer_text {
+  @include span-columns(5);
+  @include shift(3.5);
+  font-family: $monospace-type;
+  font-size: .8em;
+  text-align: center;
+  line-height: 2em;
+}
+
+.footer_text a:hover {
+  color: rgb(0,188,225);
 }
 
 .session_controls * {
   display: inline-block;
 }
 
-.session_controls .nav_elements {
+#splash_wrapper {
+  @include outer-container();
+  background: linear-gradient(45deg,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6)
+  ), image-url("splash.jpg") center;
+  background-size: cover;
+  height: 75vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cta {
+  @include span-columns(7 of 12);
+  @include shift(1);
+  font-family: $title-type;
+  font-size: 3em;
+  color: white;
+}
+
+footer {
+  @include outer-container;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a {
+  color: black;
+}
+
+footer a:hover {
+  color: $softorange;
+  transition: color .3s;
+}
+
+#cta a {
+  color: rgb(255,200,200);
+}
+
+#cta a:hover {
+  color: $softorange;
+  transition: color .2s;
+}
+
+.query_box {
+  @include span-columns(3);
+  border: 0;
+  font-family: $monospace-type;
+  text-align: center;
+  font-size: .9em;
+  padding: 1.2em;
+  border-bottom: 1px solid #ddd;
+}
+
+.query_box_wrapper {
+  @include shift(4);
+}
+
+.nav_elements {
   -webkit-border-radius: 26;
   -moz-border-radius: 26;
   border-radius: 5px;
   color: #000000;
   background: #fff;
-  font-size: .6em;
+  font-size: .7em;
   padding: 10px 20px 10px 20px;
   border: solid #ccc 1px;
   text-decoration: none;
@@ -60,6 +229,8 @@
   cursor: pointer;
 }
 
-.session_controls .nav_elements:hover {
+.nav_elements:hover {
   text-decoration: none;
+  color: $softorange;
+  transition: color .2s;
 }

@@ -9,16 +9,42 @@
   </head>
 
   <body>
+    <div class="full_width_wrapper">
     <div id="nav">
       <div id="top-logo">
         <%= link_to "palatable", root_path, class: 'logo' %>
       </div>
+
+      <%= form_for Search.new do |f| %>
+        <%= f.text_field :search, placeholder: 'Search', id: 'search_field' %>
+        <%= f.text_field :location, placeholder: 'ZIP or Address', required: true, id: 'location_field' %>
+        <div class="submit_wrapper">
+          <i class="fa fa-search fa-lg search_icon"></i>
+          <%= f.submit 'Search', id: 'search_button' %>
+        </div>
+      <% end %>
+
       <div class="session_controls">
         <%= button_to "Login", login_path, class: 'nav_elements' if !logged_in? %>
         <%= link_to "Profile", @user, class: 'nav_elements' if logged_in? %>
         <%= button_to "Logout", logout_path, method: :post, class: 'nav_elements' if logged_in? %>
       </div>
     </div>
+  </div>
     <%= yield %>
+
+    <footer>
+      <p id="footer_logo">
+        <%= link_to "p.", root_path %>
+      </p>
+      <div class="full_width_wrapper"></div>
+
+      <div class="full_width_wrapper">
+      <div class="footer_text">Made with keystrokes and consternation at the <%= link_to "Flatiron School", "http://flatironschool.com" %>.</div>
+      </div>
+      <div class="full_width_wrapper">
+      <div class="footer_text">Made + maintained: <%= link_to "@FrankieMFerreira", "https://github.com/FrankieMFerreira" %>, <%= link_to "@clintonn", "https://github.com/clintonn" %>, <%= link_to "@entcheva", "https://github.com/entcheva" %>, <%= link_to "@kighway", "https://github.com/kighway" %>.</div>
+      </div>
+    </footer>
   </body>
 </html>

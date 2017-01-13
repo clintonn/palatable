@@ -1,39 +1,45 @@
-<h3>
-  <%= link_to "Search Again", root_path%>
-</h3>
-
-<!-- remove above code in production -->
-
-
-<h1>Write a New Review</h1>
-<h2>
-      <% if @restaurant.id %>
-      for: <%= link_to @restaurant.name, restaurant_path(@restaurant)%>
-      <% else %>
-      for: <%= @restaurant.name %>
-      <% end %>
-</h2>
-<h4>
-      at: <%= @restaurant.spaced_address %>
+<div class="reviews_wrapper">
+<div class="full_width_wrapper">
+<h1 class="directive" id="new_review_directive">Writing a new review
+  <% if @restaurant.id %>
+  for <%= link_to @restaurant.name, restaurant_path(@restaurant)%>
+  <% else %>
+  for <%= @restaurant.name %>
+  <% end %>
+</h1></div>
+<h5 class="directions" id="restaurant_address">
+ <%= @restaurant.spaced_address %>
 </h4>
 <%= form_for @review do |f| %>
-    <%= f.label :title  %>
-    <%= f.text_field :title, required: true %>
-  <br>
-    <%= f.label :content %>
-    <%= f.text_area :content, required: true %>
-  <br>
-    <%= f.label :food_rating %>
-    <%= f.select :food_rating, options_for_select( (1..5).to_a, ""), {include_blank: true}, {required: true}%>
-  <br>
-  <%= f.label :environment_rating %>
-  <%= f.select :environment_rating, options_for_select( (1..5).to_a, ""), {include_blank: true}, {required: true} %>
-  <br>
-    <%= f.label :service_rating %>
-    <%= f.select :service_rating, options_for_select( (1..5).to_a, ""), {include_blank: true}, {required: true}%>
-  <br>
+<div class="full_width_wrapper">
+    <%= f.text_field :title, required: true, placeholder: "Title", autocomplete: "off" %>
+</div>
+<div class="full_width_wrapper">
+    <%= f.text_area :content, required: true, placeholder: "Enter your review here" %>
+  </div>
+  <div class="full_width_wrapper">
+    <h4 class="directions">From 1-5...</h4>
+  </div>
+<div class="full_width_wrapper">
+  <div class="rating_labels_group">
+    <%= f.label :food_rating, "How was the food?", class: "rating_label" %>
+    <%= f.label :service_rating, "How was the service?", class: "rating_label" %>
+    <%= f.label :environment_rating, "How were the vibes?", class: "rating_label" %>
+  </div>
+</div>
+<div class="full_width_wrapper">
+  <div class="ratings_group">
+    <%= f.number_field :food_rating, in: 1..5, required: true, class: "rating_scale" %>
+    <%= f.number_field :service_rating, in: 1..5, required: true, class: "rating_scale" %>
+    <%= f.number_field :environment_rating, in: 1..5, required: true, class: "rating_scale" %>
+  </div>
+</div>
+
     <%= f.hidden_field :user_id, value: @user.id%>
     <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
     <%= f.hidden_field :foursquare_id, value: @restaurant.foursquare_id %>
-    <%= f.submit %><br>
+    <div class="full_width_wrapper new_review_page_button">
+      <%= f.submit "Post Review", class: 'nav_elements', id: 'post_button' %>
+    </div>
 <% end %>
+</div>

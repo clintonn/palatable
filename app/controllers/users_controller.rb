@@ -29,9 +29,6 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
-  def delete
-  end
-
   def destroy
     @user = User.find(session[:user_id])
     @user.reviews.destroy_all

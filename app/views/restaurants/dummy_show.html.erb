@@ -1,8 +1,14 @@
+
 <style>
   .header {
-    background-image: url('<%= session[:dummy_restaurant].photo %>');
+    background: linear-gradient(45deg,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ), url("<%= session[:dummy_restaurant].photo %>") center;
+    background-size: cover;
   }
 </style>
+
 
 <div class="header">
   <h1><%= session[:dummy_restaurant].name %></h1>

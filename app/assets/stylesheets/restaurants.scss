@@ -10,7 +10,7 @@
 }
 
 .header h1 {
-  font-family: $serif-type;
+  font-family: $title-type;
   font-size: 3em;
   color: white;
   text-align: center;
@@ -30,10 +30,24 @@ a {
 
 div.socials {
   text-align: center;
-  margin-bottom: 2em;
+  margin: 2em;
 }
 
 a i {
   color: black;
   padding: 0 1em;
+}
+
+a i:hover {
+  color: $softorange;
+  transition: color .3s;
+}
+
+.reviews_wrapper {
+  @include outer-container;
+}
+
+#new_review_button {
+  @include span-columns(2);
+  @include shift(5);
 }

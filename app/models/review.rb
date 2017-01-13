@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
-
+  attr_accessor :search, :location
+  # red flag 2 ^
   has_many :upvotes
   belongs_to :restaurant
   belongs_to :user

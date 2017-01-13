@@ -4,6 +4,8 @@ class SearchesController < ApplicationController
     @search = Search.new(search_params)
     @search.set_query_url
     @search.save
+    session[:search][:search] = @search.search
+    session[:search][:location] = @search.location
     redirect_to search_result_path(@search.query)
   end
 
@@ -16,31 +18,22 @@ class SearchesController < ApplicationController
   end
 
   def show
+    find_user
     @search = Search.find_by(query: params[:query])
-    query_url = "https://api.foursquare.com/v2/venues/search?v=20161016&query=#{@search.search}&intent=checkin&client_id=#{ENV['foursquare_client_id']}&client_secret=#{ENV['foursquare_client_secret']}&near=#{@search.location}&limit=12&categoryId=4d4b7105d754a06374d81259,4d4b7105d754a06376d81259"
-
-    call = RestClient.get(query_url){ |response, request, result, &block|
+    # 400 request handling
+    resp = RestClient.get(@search.api_url){ | response, request, result, &block |
       case response.code
       when 200
         response.return!
       else
-        flash[:message] = "Error. Please specify your search query."
+        flash[:message] = "No search results: make sure your location includes a state or zip code."
         redirect_to root_path and return
       end
-      }
-      resp = JSON.parse(call)
-      @restaurants = resp["response"]["venues"]
-      @restaurants.map! do |restaurant|
-        query = Restaurant.find_by(foursquare_id: restaurant["id"])
-        if query.is_a?(Restaurant)
-          query.set_attributes
-          query.save
-          restaurant = query
-        else
-          restaurant = restaurant
-        end
-      end
-    end
+    }
+    resp = JSON.parse(resp)
+    @restaurants = resp["response"]["venues"]
+    @restaurants = @search.map_restaurants(@restaurants)
+  end
 
   private
 
