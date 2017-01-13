@@ -36,6 +36,7 @@ gem 'rest-client'
 gem 'json'
 gem 'bourbon'
 gem 'neat'
+gem 'chartkick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

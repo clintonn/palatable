@@ -1,7 +1,34 @@
-<h1>dat analytics page</h1>
+<h1>Analytics: Restaurant Reviews</h1>
 
-<h3>top 5 most popular location searches</h3>
+<h2>Top 5 restaurants with the highest rating:</h2>
+<%= column_chart Restaurant.top_5_rated_restaurants, max: 5, colors: ["orange"] %></br>
 
-<h3>top 5 restaurants with the highest reviews</h3>
+<h2>Top 5 restaurants with the highest food rating:</h2>
+<%= column_chart Restaurant.top_5_food_rated, max: 5, colors: ["orange"] %></br>
 
-<h3>top 5 restaurants with the highest food/service rating delta</h3>
+<h2>Top 5 restaurants with the highest environment rating:</h2>
+<%= column_chart Restaurant.top_5_environment_rated, max: 5, colors: ["orange"] %></br>
+
+<h2>Top 5 restaurants with the highest service rating:</h2>
+<%= column_chart Restaurant.top_5_service_rated, max: 5, colors: ["orange"] %></br>
+
+<!-- <h2>Top 5 most reviewed restaurants:</h2>
+
+<h2>Top 5 restaurants with the highest food/lowest service rating:</h2>
+
+<h2>Top 5 restaurants with the lowest rating:</h2>
+
+
+<h1>Analytics: Users</h1>
+
+<h2>Top 5 users who have written the most reviews:</h2> -->
+
+
+<h1>Analytics: Location</h1>
+
+<h2>Top 5 most popular location searches:</h2>
+<p>
+  <% Review.most_searched_zipcode.each do |obj| %>
+    <%= obj.location %>: <%= obj.count %><br>
+  <% end %>
+</p>

@@ -21,4 +21,8 @@ class Review < ApplicationRecord
     {"Food" => food_rating, "Environment" => environment_rating, "Service" => service_rating}
   end
 
+  def self.most_searched_zipcode
+    Search.select("location, count('location')").group(:location).order("count('location') desc").limit(5)
+  end
+
 end
