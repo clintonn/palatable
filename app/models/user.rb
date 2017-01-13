@@ -19,7 +19,7 @@ class User < ApplicationRecord
     User.all.each do |reviewer|
       hash[reviewer.name] = reviewer.reviews.count
     end
-    hash
+    hash.sort_by {|key, value| value }.reverse[0..4]
   end
 
 end
