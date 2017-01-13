@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :name, :email, presence: true
+  validates_uniqueness_of :email
+  validates_length_of :password, minimum: 12, too_short: "Password should be at least 12 characters"
 
   def owns_review?(review)
     review.user == self
