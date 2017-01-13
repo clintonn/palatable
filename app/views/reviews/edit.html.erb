@@ -33,8 +33,13 @@
     <%= f.hidden_field :user_id, value: @user.id%>
     <%= f.hidden_field :restaurant_id, value: @review.restaurant.id %>
     <%= f.hidden_field :foursquare_id, value: @review.restaurant.foursquare_id %>
-    <div id="submit_post">
-      <%= f.submit "Update Review", class: 'nav_elements', id: 'post_button' %>
+    <%= f.submit "Update Review", class: 'nav_elements', id: 'post_button' %>
+
+<% end %>
+<div id="submit_post">
+
+<%= form_tag review_path, method: :delete do %>
+        <%= button_tag "Delete Review", class: 'nav_elements', id: 'post_button' %>
     </div>
 <% end %>
 </div>

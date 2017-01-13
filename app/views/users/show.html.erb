@@ -1,19 +1,46 @@
 <div class="reviews_wrapper">
-<h1> Welcome <%= @user.name %>! </h1>
-<%= link_to "Edit My Profile", edit_user_path(@user)%>
+<h1 class="directive" id="profile_name"><%= @user.name %></h1>
+<div class="full_width_wrapper">
+<%= button_to "Edit My Profile", edit_user_path(@user), method: :get, class: 'nav_elements', id: "edit_profile_button" %> </div>
+<br><br><br>
 
-<p>
   <% @user.reviews.each do |review| %>
-  <%= review.restaurant_name %><br><br>
-  <%= link_to review.title, review %><br>
-  Food Rating: <%= review.food_rating %><br>
-  Service Rating: <%= review.service_rating %><br>
-  Environment Rating: <%= review.environment_rating %><br>
-  <%= review.content %><br>
-  <br>
-  <%= button_to "Edit this review", edit_review_path(review), method: 'get' %><br>
-  <br>
-<% end %>
-</p>
-<br><br>
+    <section class="review-content">
+      <section class="user_profile_title"><%= link_to review.title, review %></section>
+      <hr class="divider" />
+      <section class="user_profile_monospace_headings"><%= link_to review.restaurant_name, review.restaurant %></h4>
+    </section>
+
+    <div class="full_width_wrapper">
+      <section class="review-text">
+        <%= review.content.truncate(600, separator: ' ') %>
+    </section>
+  </div>
+  <div class="full_width_wrapper">
+    <section class="ratings">
+      <% review.ratings_hash.each do |k, v| %>
+        <div class='<%= k.downcase %>-rating'>
+          <% v.times do |n| %>
+            <i class="fa fa-star"></i>
+          <% end %>
+          <% (5-v).times do |n| %>
+            <i class="fa fa-star-o"></i>
+          <% end %>
+          <%= k %>
+        </div>
+      <% end %>
+    </section>
+  </div>
+  <div class="full_width_wrapper">
+    <div class="centerer">
+    <%= button_to "Edit this review", edit_review_path(review), method: 'get', class: 'nav_elements user_prof_edit_review' %>
+    </div>
+  </div>
+
+  </section>
+  <% end %>
+
+
+
+
 </div>

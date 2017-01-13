@@ -2,8 +2,7 @@
     <h1 class="directive review-title" id="review_title"><%= @review.title %>
     </h1>
     <div class="full_width_wrapper">
-      <h4 id="byline"><%= link_to @review.user.name, user_path(@review.user)%>
-
+      <h4 id="byline"><%= link_to @review.user.name, user_path(@review.user)%> // <%= link_to @review.restaurant.name, @review.restaurant %>
     </div>
     </h4>
     <hr class="divider" />
@@ -32,12 +31,12 @@
     </section>
     </div>
 
-  <div class="full_width_wrapper">
+  <div class="full_width_wrapper centerer">
     <% if @owned %>
-        <%= form_tag edit_review_path, method: 'get' do %>
+        <%= form_tag edit_review_path, method: 'get', class: 'review_show_buttons' do %>
           <%= submit_tag "Edit this Review", class: 'nav_elements' %>
         <% end %>
-        <%= form_tag review_path, method: 'delete' do %>
+        <%= form_tag review_path, method: 'delete', class: 'review_show_buttons' do %>
           <%= submit_tag "Delete this Review", class: 'nav_elements' %>
         <% end %>
     <% end %>
