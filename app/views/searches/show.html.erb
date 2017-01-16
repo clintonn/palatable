@@ -1,5 +1,5 @@
 <div id="results_container">
-<h1 id="did_you_mean">🍕 Searching for <%= @search.search%> near <%= @search.location%>...</h1>
+<h1 id="did_you_mean">🍕 Searching for <%= "everything" if @search.search.empty? %><%= @search.search %> near <%= @search.location%>...</h1>
 <div id="results_inner_container">
   <% @restaurants.each do |restaurant| %>
     <div class="result_card">

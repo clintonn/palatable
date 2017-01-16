@@ -1,8 +1,10 @@
 <div class="reviews_wrapper">
 <h1 class="directive" id="profile_name"><%= @user.name %></h1>
+<% if @user.id == session[:user_id] %>
 <div class="full_width_wrapper">
 <%= button_to "Edit My Profile", edit_user_path(@user), method: :get, class: 'nav_elements', id: "edit_profile_button" %> </div>
-<br><br><br>
+<% end %>
+<br><br>
 
   <% @user.reviews.each do |review| %>
     <section class="review-content">
@@ -33,7 +35,7 @@
   </div>
   <div class="full_width_wrapper">
     <div class="centerer">
-    <%= button_to "Edit this review", edit_review_path(review), method: 'get', class: 'nav_elements user_prof_edit_review' %>
+    <%= button_to "Edit this review", edit_review_path(review), method: 'get', class: 'nav_elements submittable user_prof_edit_review' %>
     </div>
   </div>
 

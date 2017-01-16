@@ -2,7 +2,9 @@
 
 <%= form_for @user do |f| %>
 <% if flash[:notice] %>
+<div class="full_width_wrapper">
   <div class="notice"><%= flash[:notice] %></div>
+</div>
 <% end %>
   <%= f.label :name %>
   <br>

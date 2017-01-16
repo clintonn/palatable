@@ -26,10 +26,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-    # find_user
-    # place in application controller? or private method in reviews
-    def find_user
-      @user = User.find(session[:user_id]) if session[:user_id]
-    end
+  def find_user
+    @user = User.find(session[:user_id]) if session[:user_id]
+    @user ||= User.new
+  end
 
 end

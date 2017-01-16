@@ -106,7 +106,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    # red flag 1
     params.require(:review).permit(:title, :content, :food_rating, :environment_rating, :service_rating, :user_id, :restaurant_id, :search, :location)
   end
 
@@ -116,9 +115,6 @@ class ReviewsController < ApplicationController
 
   # find_user
   # place in application controller? or private method in reviews
-  def find_user
-    @user = User.find(session[:user_id]) if session[:user_id]
-  end
 
   def find_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])

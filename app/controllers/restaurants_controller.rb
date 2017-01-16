@@ -9,11 +9,11 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    find_user
     @restaurant = Restaurant.find(params[:id])
     @restaurant.set_attributes
     @restaurant.save
-    find_user
-    @user_review = @user.owns_restaurant_review(@restaurant)[0]
+    @user_review = @user.owns_restaurant_review(@restaurant)[0] if @user
     if @user_review
       @reviews = @restaurant.first_x_reviews(9)
     else

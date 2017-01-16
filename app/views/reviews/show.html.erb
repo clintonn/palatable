@@ -34,10 +34,10 @@
   <div class="full_width_wrapper centerer">
     <% if @owned %>
         <%= form_tag edit_review_path, method: 'get', class: 'review_show_buttons' do %>
-          <%= submit_tag "Edit this Review", class: 'nav_elements' %>
+          <%= submit_tag "Edit this Review", class: 'nav_elements submittable' %>
         <% end %>
         <%= form_tag review_path, method: 'delete', class: 'review_show_buttons' do %>
-          <%= submit_tag "Delete this Review", class: 'nav_elements' %>
+          <%= submit_tag "Delete this Review", class: 'nav_elements submittable' %>
         <% end %>
     <% end %>
   </div>

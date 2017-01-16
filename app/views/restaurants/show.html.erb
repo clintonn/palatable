@@ -79,10 +79,10 @@
             <% end %>
           </section>
         <section class="review-text">
-            <%= @user_review.content %>
+            <%= simple_format(@user_review.content.truncate_words(100)) %>
         </section>
         </section>
-        <%= button_to 'Edit your review', edit_review_path(@user_review.id), method: 'get' %>
+        <%= button_to 'Edit your review', edit_review_path(@user_review.id), method: 'get', class: 'submittable nav_elements' %>
       </div>
       <br>
   <% end %>
@@ -109,7 +109,7 @@
             <% end %>
           </section>
           <section class="review-text">
-            <%= review.content %>
+            <%= simple_format(review.content.truncate_words(100)) %>
         </section>
         </section>
       </div>

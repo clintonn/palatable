@@ -7,7 +7,7 @@
 <% end %>
 
 
-<% if @user %>
+<% if session[:user_id] %>
   <%= form_for @review, url: post_from_homepage_path do |f| %>
     <div class="full_width_wrapper">
       <%= f.text_field :title, placeholder: 'Title', autocomplete: "off"; %>
@@ -23,7 +23,7 @@
   </div>
   <div class="full_width_wrapper"></div>
     <div id="submit_post">
-      <%= f.submit 'Preview post', class: 'nav_elements', id: 'post_button' %>
+      <%= f.submit 'Preview post', class: 'submittable nav_elements', id: 'post_button' %>
     </div>
   <% end %>
 <% else %>

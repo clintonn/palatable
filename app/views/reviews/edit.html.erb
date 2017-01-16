@@ -29,17 +29,13 @@
     <%= f.number_field :environment_rating, in: 1..5, required: true, class: "rating_scale" %>
   </div>
 </div>
-
+<div class="full_width_wrapper">
     <%= f.hidden_field :user_id, value: @user.id%>
     <%= f.hidden_field :restaurant_id, value: @review.restaurant.id %>
     <%= f.hidden_field :foursquare_id, value: @review.restaurant.foursquare_id %>
-    <%= f.submit "Update Review", class: 'nav_elements', id: 'post_button' %>
-
+    <%= f.submit "Update Review", class: 'nav_elements submittable' %>
 <% end %>
-<div id="submit_post">
-
 <%= form_tag review_path, method: :delete do %>
-        <%= button_tag "Delete Review", class: 'nav_elements', id: 'post_button' %>
-    </div>
+        <%= button_tag "Delete Review", class: 'nav_elements submittable' %>
 <% end %>
 </div>
