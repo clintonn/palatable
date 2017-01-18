@@ -3,6 +3,8 @@
 
 @font-face {font-family: 'RomanaBT-Bold';src: url('webfonts/2CB973_0_0.eot');src: url('webfonts/2CB973_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2CB973_0_0.woff2') format('woff2'),url('webfonts/2CB973_0_0.woff') format('woff'),url('webfonts/2CB973_0_0.ttf') format('truetype');}
 
+// replace 'RomanaBT-Bold' family with your serif type of choice
+
 $title-type: 'RomanaBT-Bold', 'Georgia', serif;
 $monospace-type: 'Roboto Mono', 'Insoncolata', 'Monaco', 'Courier New', monospace;
 $serif-type: 'Noto Serif', 'Garamond', 'Caslon', 'Adobe Caslon Pro', Palatino, serif;

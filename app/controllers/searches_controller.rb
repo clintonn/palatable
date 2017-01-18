@@ -4,8 +4,10 @@ class SearchesController < ApplicationController
     @search = Search.new(search_params)
     @search.set_query_url
     @search.save
+    puts "saved"
     session[:search][:search] = @search.search
     session[:search][:location] = @search.location
+    puts "saved to session"
     redirect_to search_result_path(@search.query)
   end
 
@@ -19,7 +21,9 @@ class SearchesController < ApplicationController
 
   def show
     find_user
+    puts "find user"
     @search = Search.find_by(query: params[:query])
+    puts "finding search"
     # 400 request handling
     resp = RestClient.get(@search.api_url){ | response, request, result, &block |
       case response.code
@@ -30,7 +34,9 @@ class SearchesController < ApplicationController
         redirect_to root_path and return
       end
     }
+    puts "parsing response"
     resp = JSON.parse(resp)
+    puts "response: #{resp}"
     @restaurants = resp["response"]["venues"]
     @restaurants = @search.map_restaurants(@restaurants)
   end
