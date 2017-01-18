@@ -4,10 +4,6 @@ class SearchesController < ApplicationController
     @search = Search.new(search_params)
     @search.set_query_url
     @search.save
-    puts "saved"
-    session[:search][:search] = @search.search
-    session[:search][:location] = @search.location
-    puts "saved to session"
     redirect_to search_result_path(@search.query)
   end
 
