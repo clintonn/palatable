@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   attr_accessor :search, :location
   # red flag 2 ^
+  # yeah, what is happening here??
   has_many :upvotes
   belongs_to :restaurant
   belongs_to :user
@@ -10,6 +11,8 @@ class Review < ApplicationRecord
   validates :food_rating, :environment_rating, :service_rating, numericality: { only_integer: true }
 
   def restaurant_name
+    # couldn't you just say restaurant.name
+    # ActiveRecord should establish the relationship for you
     Restaurant.find(self.restaurant_id).name
   end
 
@@ -24,6 +27,7 @@ class Review < ApplicationRecord
   end
 
   def self.most_searched_zipcode
+    #why is this in here?
     Search.select("location, count('location')").group(:location).order("count('location') desc").limit(5)
   end
 end

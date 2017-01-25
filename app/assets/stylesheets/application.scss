@@ -13,6 +13,16 @@
  *= require_self
  */
 
+/* Overall, great job with the CSS. The app looks professional, but as you
+ * know the point of the project was to master Rails. The one
+ * issue I have with writing CSS like this is that it isn't very reusable and that
+ * there are often conflicts that become hard to fix. If you want to study
+ * more CSS, I would suggest an object-oriented approach popularized by
+ * Nicole Sullivan. I wrote a blog post on it if you want to read, but
+ * otherwise just search OOCSS.
+ * http://talum.github.io/blog/2016/12/26/an-intro-to-object-oriented-css/
+ */
+
  @import "bourbon";
  @import "neat";
  @import "variables";
@@ -193,7 +203,7 @@ body {
 }
 
 #edit_profile_button {
-  @include span-columns(3);
+  @include span-columns(4);
   @include shift(4.5);
 }
 

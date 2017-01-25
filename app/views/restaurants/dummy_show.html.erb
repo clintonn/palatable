@@ -1,4 +1,4 @@
-
+<!-- oh boy, what's happening here? why isn't this in the stylesheet? -->
 <style>
   .header {
     background: linear-gradient(45deg,
@@ -16,6 +16,7 @@
 
 <div class="socials">
   <% socials = {phone: session[:dummy_restaurant].phone, facebook: session[:dummy_restaurant].facebook, twitter: session[:dummy_restaurant].twitter, globe: session[:dummy_restaurant].url}.compact %>
+  <!-- I think a better approach would be to work with model objects, or shells of model objects. In the controller, you could have rendered the show view with the initialization of the dummy object read from either the object or the session if you were so concerned wwith db rows. However, I don't think that the extra data should be a huge concern here. -->
   <% socials.each do |k, v| %>
   <a href="
     <% case k %>

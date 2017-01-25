@@ -1,7 +1,8 @@
 <% @restaurants.each do |restaurant| %>
 
-  <% if restaurant.is_a?(Restaurant) %>
+  <% if restaurant.is_a?(Restaurant) %> <!-- don't do this check in the view...that's weird. in general, using `is_a?` is frowned upon since you should be confident about the data you're working with -->
     <h4><%= link_to restaurant.name, restaurant %></h4>
+    <!-- I would do this string formatting in a helper method rather than right in the view. -->
     <p><%= restaurant = restaurant.address.split("~") %></p>
   <% else %>
     <%= link_to restaurant["name"], new_restaurant_path(address: restaurant["location"]["formattedAddress"], name: restaurant["name"], foursquare_id: restaurant["id"]), method: :post %>
