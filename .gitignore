@@ -27,9 +27,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 =======
-# Ignore all typography-related files (licensing)
-/app/assets/stylesheets/webfonts
-/app/assets/stylesheets/webfonts*
+
 
 # Ignore compiled assets, compile yourself in production with "rake assets:precompile"
 /public/assets
