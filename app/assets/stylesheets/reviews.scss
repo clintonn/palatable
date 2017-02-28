@@ -269,3 +269,7 @@ input#review_title, textarea#review_content {
   @include shift(4);
   margin-top: 0;
 }
+
+.review {
+  text-align: center;
+}

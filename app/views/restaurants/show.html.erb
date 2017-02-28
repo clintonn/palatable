@@ -45,12 +45,12 @@
   <% end %>
 
 <% if @user && !@user_review %>
+<div class="post-review-button">
   <%= button_to 'Post a Review', new_review_path(@restaurant.id), method: :get, class: "nav_elements", id: "new_review_button" %>
+</div>
 <% end %>
 
 <% unless @reviews.empty? %>
-
-  <h3 class="review_list_header">Review List</h3>
 
   <% if @user && @user_review %>
       <div class="centerer"><h4>Here's your review, <%= link_to @user.name, @user %></h4>
@@ -91,11 +91,10 @@
   <% unless review.user.id == @user.id %>
     <div class="review">
       <div class="user-info">
-        <%= link_to review.user.name, user_path(review.user) %> said:
-
+        <strong><%= link_to review.user.name, user_path(review.user) %>'s review:</strong>
       </div>
       <section class="review-content">
-          <section class="review-title">
+          <section class="review-title ">
             <%= review.title %>
           </section>
           <section class="ratings">
