@@ -256,3 +256,25 @@ footer a:hover {
   color: $softorange;
   transition: color .2s;
 }
+
+
+.session-input {
+  width: 33%;
+  margin: 1em auto;
+}
+
+.session-form h1 {
+  font-family: $title-type;
+  text-align: center;
+}
+
+.session-input label {
+  font-family: $monospace-type;
+  font-size: .8em;
+}
+
+.session-input input[type=text], input[type=password], input[type=email] {
+  border: 0;
+  border-bottom: 1px solid #999;
+  width: 100%;
+}
