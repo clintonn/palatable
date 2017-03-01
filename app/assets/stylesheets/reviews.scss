@@ -261,7 +261,7 @@ input#review_title, textarea#review_content {
 #new_review_directive {
   @include shift(3.0);
   @include span-columns(6);
-  text-align: center;
+
 }
 
 #restaurant_address {
