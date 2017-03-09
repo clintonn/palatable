@@ -14,7 +14,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user
     else
-      flash[:notice] = "Invalid username or password."
+      errors = @user.errors.full_messages.to_sentence
+      flash[:notice] = errors
       redirect_to login_path
     end
   end
